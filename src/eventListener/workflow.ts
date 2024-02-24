@@ -1,4 +1,4 @@
-import { _auObserver } from '../auObserver.js';
+import { _tfObserver } from '../tfObserver.js';
 import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { auCedEle, auElementType, pluginArgs, workflowArgs } from '../types.js';
@@ -53,7 +53,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
   cedEle.tfMeta = { ...tfMeta } // add the metadata for debugging and other edge use cases like maybe they want to parse the tf-post query params
   // the observer will decide if it needs to wire up as another auElement
   // todo: validate this is still necessary.
-  _auObserver(cedEle, tfConfig)
+  _tfObserver(cedEle, tfConfig)
 
   // todo: clear up the language between the targetElement and the event target element. The event target is what kicks everything off like a button is clicked on. The button is the eventTargetEle. 
   //       the target or targetEle is where we are going to insert the newEle created by CED into the DOM.

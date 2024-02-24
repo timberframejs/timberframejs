@@ -1,9 +1,9 @@
 export * from './utils/idMaker/index.js'
-export * from './auObserver.js'
+export * from './tfObserver.js'
 export * from './auConstants.js'
 export * from './utils/index.js'
 export * from './defaultConfig.js'
-import { _auObserver } from './auObserver.js'
+import { _tfObserver } from './tfObserver.js'
 import { defaultConfig } from './defaultConfig.js'
 import { tfConfigType } from './types.js'
 /**
@@ -13,6 +13,6 @@ import { tfConfigType } from './types.js'
  * auObserver(document.body, myConfig)
  */
 export function auObserver(ele:HTMLElement, tfConfig:tfConfigType = defaultConfig) {
-  _auObserver(ele,tfConfig)
+  _tfObserver(ele,tfConfig)
 }
 
