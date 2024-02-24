@@ -29,13 +29,13 @@ export const prepareAuConfig = (tfConfig: tfConfigType) => {
   return tfConfig;
 }
 
-export function _auObserver(ele: HTMLElement, tfConfig: tfConfigType) {
+export function _tfObserver(ele: HTMLElement, tfConfig: tfConfigType) {
   if (!Object.isFrozen(tfConfig)) {
     // organize plugins once to improve performance
     prepareAuConfig(tfConfig)
     Object.freeze(tfConfig);
   }
   const callback = getCallback(tfConfig);
-  const auObserver = new MutationObserver(callback);
-  auObserver.observe(ele, { attributes: true, subtree: true, childList: true })
+  const tfObserver = new MutationObserver(callback);
+  tfObserver.observe(ele, { attributes: true, subtree: true, childList: true })
 }

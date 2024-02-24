@@ -1,5 +1,5 @@
 import { _auObserver } from '../auObserver.js';
-import { isAuElement } from '../common.js';
+import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { auCedEle, auElementType, pluginArgs, workflowArgs } from '../types.js';
 import { createElement } from '../utils/index.js';
@@ -19,7 +19,7 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
     return
   }
 
-  if (isAuElement(ele as HTMLElement)) {
+  if (isTfElement(ele as HTMLElement)) {
     (ele as auElementType).auAbortController.abort()
   }
   Array.from(ele.children).forEach(childEle => { removeOldEventListeners(childEle) })

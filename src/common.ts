@@ -1,4 +1,4 @@
-export function isAuElement(ele: Element) {
+export function isTfElement(ele: Element) {
   return Array.from(ele.attributes).find(attr => attr?.name.startsWith('tf-'))
 }
 
