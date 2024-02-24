@@ -1,11 +1,11 @@
 import { pluginDefinition } from "src/types.js";
-import { auHref } from "./auHref.js";
+import { tfHref } from "./tfHref.js";
 
-export const auHrefPlugin = {
-  name:'auHref',
+export const tfHrefPlugin = {
+  name:'tfHref',
   endEventCallback: {
     when:'end',
-    callback: auHref,
+    callback: tfHref,
     args:{
       _window: window
     }

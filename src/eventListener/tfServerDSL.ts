@@ -51,7 +51,7 @@ export async function attachServerRespToCedEle(plugIn: pluginArgs) {
 
   if (verb === 'post') {
     const model = getModel(plugIn)
-    const json = await plugIn.auConfig.serverPost(url, model, plugIn)
+    const json = await plugIn.tfConfig.serverPost(url, model, plugIn)
     // @ts-ignore
     const merged = { ...model, ...json }
     updateCedData(merged, json, plugIn)
@@ -62,7 +62,7 @@ export async function attachServerRespToCedEle(plugIn: pluginArgs) {
     const model = getModel(plugIn);
     const qs = objectToQueryParams(model);
     const urlWithQs = `${url}${qs}`;
-    const json = await plugIn.auConfig.serverGet(urlWithQs, plugIn);
+    const json = await plugIn.tfConfig.serverGet(urlWithQs, plugIn);
     updateCedData(model, json, plugIn)
   }
 }

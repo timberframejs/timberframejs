@@ -1,7 +1,7 @@
 import './eventListenerDSL.spec.js'
 import './auObserver.spec.js'
 import './parseTfCed.spec.js'
-import './plugins/auHref.spec.js'
+import './plugins/tfHref.spec.js'
 import './plugins/preserveFocus.spec.js'
 import './formData.spec.js'
 import './eventListener/tfCedPatch.spec.js'

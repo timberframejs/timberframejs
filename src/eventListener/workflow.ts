@@ -26,9 +26,9 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
 }
 
 export const mainWorkflow = async (wf: workflowArgs)=> {
-  const { ele, initialMeta, auConfig, e } = wf
+  const { ele, initialMeta, tfConfig, e } = wf
 
-  const tfMeta = await gettfMeta(ele, initialMeta, auConfig)
+  const tfMeta = await gettfMeta(ele, initialMeta, tfConfig)
 
   // patch has a totally different workflow, this could even move up one level
   if (tfMeta.auCed.raw.startsWith('patch')) {
@@ -42,7 +42,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
     tfMeta,
     ele,
     cedEle,
-    auConfig
+    tfConfig: tfConfig
   } as pluginArgs
 
   // attachServerResp is mutually exclusive against update the component with form data
@@ -53,7 +53,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
   cedEle.tfMeta = { ...tfMeta } // add the metadata for debugging and other edge use cases like maybe they want to parse the tf-post query params
   // the observer will decide if it needs to wire up as another auElement
   // todo: validate this is still necessary.
-  _auObserver(cedEle, auConfig)
+  _auObserver(cedEle, tfConfig)
 
   // todo: clear up the language between the targetElement and the event target element. The event target is what kicks everything off like a button is clicked on. The button is the eventTargetEle. 
   //       the target or targetEle is where we are going to insert the newEle created by CED into the DOM.
@@ -69,12 +69,12 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
      // @ts-ignore
     document.startViewTransition(()=>{
       toDispose = replaceAuTarget(plugInArgs)
-      wf.auConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs, pi.endEventCallback.args))
+      wf.tfConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs, pi.endEventCallback.args))
       removeOldEventListeners(toDispose)
     })
   }else{
     toDispose = replaceAuTarget(plugInArgs)
-    wf.auConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs, pi.endEventCallback.args))
+    wf.tfConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs, pi.endEventCallback.args))
     removeOldEventListeners(toDispose)
   }
 

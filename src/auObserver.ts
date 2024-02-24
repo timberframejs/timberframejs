@@ -1,41 +1,41 @@
 import { isAuElement } from './common.js';
 import { tfConfigType } from './types.js';
 
-export function recurseNodes(node: HTMLElement, auConfig: tfConfigType) {
+export function recurseNodes(node: HTMLElement, tfConfig: tfConfigType) {
   if (node.nodeType === Node.ELEMENT_NODE) {
     // console.log(node?.tagName)
-    node.childNodes.forEach(child => recurseNodes(child as HTMLHtmlElement, auConfig))
+    node.childNodes.forEach(child => recurseNodes(child as HTMLHtmlElement, tfConfig))
     if (!isAuElement(node)) { return; }
-    auConfig.eventListenerBuilder(node as unknown as HTMLElement, auConfig)
+    tfConfig.eventListenerBuilder(node as unknown as HTMLElement, tfConfig)
   }
 }
 
-const getCallback = (auConfig: tfConfigType) => {
+const getCallback = (tfConfig: tfConfigType) => {
   // Callback function to execute when mutations are observed
   return (mutationList: MutationRecord[], observer) => {
     for (const mutation of mutationList) {
       if (mutation.target?.nodeType === 1 || mutation.target?.nodeType === 11) {
-        recurseNodes(mutation.target as HTMLElement, auConfig)
+        recurseNodes(mutation.target as HTMLElement, tfConfig)
       }
     }
   };
 }
 
-export const prepareAuConfig = (auConfig: tfConfigType) => {
-  auConfig._plugins = {
-    atEnd: auConfig.plugins.filter(p => p.endEventCallback !== undefined),
-    preflight: auConfig.plugins.filter(p => p.preflight !== undefined)
+export const prepareAuConfig = (tfConfig: tfConfigType) => {
+  tfConfig._plugins = {
+    atEnd: tfConfig.plugins.filter(p => p.endEventCallback !== undefined),
+    preflight: tfConfig.plugins.filter(p => p.preflight !== undefined)
   }
-  return auConfig;
+  return tfConfig;
 }
 
-export function _auObserver(ele: HTMLElement, auConfig: tfConfigType) {
-  if (!Object.isFrozen(auConfig)) {
+export function _auObserver(ele: HTMLElement, tfConfig: tfConfigType) {
+  if (!Object.isFrozen(tfConfig)) {
     // organize plugins once to improve performance
-    prepareAuConfig(auConfig)
-    Object.freeze(auConfig);
+    prepareAuConfig(tfConfig)
+    Object.freeze(tfConfig);
   }
-  const callback = getCallback(auConfig);
+  const callback = getCallback(tfConfig);
   const auObserver = new MutationObserver(callback);
   auObserver.observe(ele, { attributes: true, subtree: true, childList: true })
 }

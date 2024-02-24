@@ -4,11 +4,11 @@ import { pluginArgs } from "../../types.js";
  * use tf-hash for now.
  * tf-href could be so much more and do not want to have breaking changes later
  */
-export async function auHref(plugIn: Partial<pluginArgs>, args) {
-  const auHref = plugIn.ele.getAttribute('tf-href')
-  if (auHref === null) { return null}
-  let hash = auHref
-  if(auHref === 'use tf-ced'){
+export async function tfHref(plugIn: Partial<pluginArgs>, args) {
+  const tfHref = plugIn.ele.getAttribute('tf-href')
+  if (tfHref === null) { return null}
+  let hash = tfHref
+  if(tfHref === 'use tf-ced'){
     // todo:might want to whitelist or sanitize the tagname
     hash = `#${plugIn.tfMeta.auCed.tagName}?${plugIn.tfMeta.auCed.qs}`
   }

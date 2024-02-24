@@ -10,8 +10,8 @@ export async function basicEventListener(eventSetup: eventSetupArgs) {
 
   eventSetup.ele.addEventListener(eventSetup.initialMeta.trigger, async (e) => {
     (eventSetup as workflowArgs).e = e;
-    if(eventSetup.auConfig.workflow){
-      await eventSetup.auConfig.workflow(eventSetup as workflowArgs)
+    if(eventSetup.tfConfig.workflow){
+      await eventSetup.tfConfig.workflow(eventSetup as workflowArgs)
     }else{
       // easier tracing and debugging, but allows for overriding
       mainWorkflow(eventSetup as workflowArgs)
@@ -21,19 +21,19 @@ export async function basicEventListener(eventSetup: eventSetupArgs) {
 }
 
 
-export async function eventListenerBuilder(ele: auElementType, auConfig:tfConfigType) {
+export async function eventListenerBuilder(ele: auElementType, tfConfig:tfConfigType) {
   // prevent infinate loop or already processed elements
   if (ele.auState === 'processed') { return; }
   ele.auState = 'processed'
 
-  const initialMeta = await tfMetaPrep(ele, auConfig);
+  const initialMeta = await tfMetaPrep(ele, tfConfig);
   const eventSetupArgs = {
     ele,
-    auConfig,
+    tfConfig,
     initialMeta
   } as eventSetupArgs;
 
-  auConfig._plugins.preflight.forEach(p=>p.preflight(eventSetupArgs));
+  tfConfig._plugins.preflight.forEach(p=>p.preflight(eventSetupArgs));
 
   // safety to limit the types of events or triggers, this will need to change as the api expands
   if (!triggerKeys.includes(initialMeta.trigger)) { return }

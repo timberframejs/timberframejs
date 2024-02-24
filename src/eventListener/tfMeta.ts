@@ -3,14 +3,14 @@ import { CED } from '../utils/index.js';
 import { parseTfCed } from './parseTfCed.js';
 import { guessTheTargetSelector } from './parseTfTarget.js';
 
-export async function tfMetaPrep(ele: HTMLElement, auConfig: tfConfigType): Promise<Partial<tfMetaType>>{
+export async function tfMetaPrep(ele: HTMLElement, tfConfig: tfConfigType): Promise<Partial<tfMetaType>>{
   const brains = []
   if (ele.getAttribute('tf-trigger') === null) {
-    ele.setAttribute('tf-trigger', auConfig.defaultAttributes['tf-trigger']);
+    ele.setAttribute('tf-trigger', tfConfig.defaultAttributes['tf-trigger']);
     brains.push('tf-trigger was empty. The default in the was added for you.')
   }
   if (ele.getAttribute('tf-swap') === null) {
-    ele.setAttribute('tf-swap', auConfig.defaultAttributes['tf-swap']);
+    ele.setAttribute('tf-swap', tfConfig.defaultAttributes['tf-swap']);
     brains.push('tf-swap was empty. The default in the config was added for you.')
   }
 
@@ -32,14 +32,14 @@ export async function tfMetaPrep(ele: HTMLElement, auConfig: tfConfigType): Prom
   return tfMeta
 }
 
-export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType>, auConfig: tfConfigType): Promise<tfMetaType> {
+export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType>, tfConfig: tfConfigType): Promise<tfMetaType> {
 
   const tfMeta = {
     trigger: initialMeta.trigger, //eventlistener already running when trigger is set
     server: ele.getAttribute('tf-server'),
     targetSelector: ele.getAttribute('tf-target'),
-    auCed: parseTfCed(ele.getAttribute('tf-ced'), auConfig, ele),
-    auInclude:  ele.getAttribute('tf-include'), //parseAuInclude(ele.getAttribute('tf-include'), auConfig, ele),
+    auCed: parseTfCed(ele.getAttribute('tf-ced'), tfConfig, ele),
+    auInclude:  ele.getAttribute('tf-include'), //parseAuInclude(ele.getAttribute('tf-include'), tfConfig, ele),
     auSwap: ele.getAttribute('tf-swap'),
     isThis: false,
     brains: initialMeta.brains,

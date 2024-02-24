@@ -12,7 +12,7 @@ import { tfConfigType } from './types.js'
  * or if you want control over the HTTP requests or other options
  * auObserver(document.body, myConfig)
  */
-export function auObserver(ele:HTMLElement, auConfig:tfConfigType = defaultConfig) {
-  _auObserver(ele,auConfig)
+export function auObserver(ele:HTMLElement, tfConfig:tfConfigType = defaultConfig) {
+  _auObserver(ele,tfConfig)
 }
 

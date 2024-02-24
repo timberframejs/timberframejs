@@ -4,7 +4,7 @@ import { mainWorkflow } from "./eventListener/workflow.js";
 import { getJson, postJson } from "./fetcher.js";
 import { tfConfigType } from "./types.js";
 import { preserveFocusPlugin } from "./plugins/preserveFocus/index.js";
-import { auHrefPlugin } from "./plugins/auHref/index.js";
+import { tfHrefPlugin } from "./plugins/tfHref/index.js";
 import { tfHostPlugIn } from "./plugins/tfHost/index.js";
 import { tfHashPlugin } from "./plugins/tfHash/index.js";
 
@@ -23,5 +23,5 @@ export const defaultConfig = {
   auCed:{
     verb:'post'
   },
-  plugins:[ auHrefPlugin, preserveFocusPlugin, tfHostPlugIn, tfHashPlugin]
+  plugins:[ tfHrefPlugin, preserveFocusPlugin, tfHostPlugIn, tfHashPlugin]
 } as tfConfigType
