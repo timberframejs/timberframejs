@@ -1,7 +1,7 @@
 {
   "name": "@timberframejs/timberframejs",
   "version": "0.0.01",
-  "description": "HTML driven reactivity for customElements",
+  "description": "HTML driven reactivity and glue for customElements",
   "author": "Eric Rohlfs",
   "main": "./dist/js/index.js",
   "scripts": {
