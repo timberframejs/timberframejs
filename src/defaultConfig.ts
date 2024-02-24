@@ -5,7 +5,7 @@ import { getJson, postJson } from "./fetcher.js";
 import { tfConfigType } from "./types.js";
 import { preserveFocusPlugin } from "./plugins/preserveFocus/index.js";
 import { auHrefPlugin } from "./plugins/auHref/index.js";
-import { auHostPlugIn } from "./plugins/auHost/index.js";
+import { tfHostPlugIn } from "./plugins/tfHost/index.js";
 import { tfHashPlugin } from "./plugins/tfHash/index.js";
 
 // for now the assumption is that all responses will be json 
@@ -23,5 +23,5 @@ export const defaultConfig = {
   auCed:{
     verb:'post'
   },
-  plugins:[ auHrefPlugin, preserveFocusPlugin, auHostPlugIn, tfHashPlugin]
+  plugins:[ auHrefPlugin, preserveFocusPlugin, tfHostPlugIn, tfHashPlugin]
 } as tfConfigType

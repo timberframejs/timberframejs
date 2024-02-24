@@ -6,7 +6,7 @@ import { HelloWorldDiv } from './basic/helloWorld.js';
 import './patch/patch.js';
 import './store/store.js'
 import './auElementGenerator/auElementGenerator.js'
-import './auHost/auHostExample.js'
+import './tfHost/tfHostExample.js'
 import './timerApp/index.js'
 defineElement('hello-msg', HelloWorldDiv,'div')
 
