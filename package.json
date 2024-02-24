@@ -1,6 +1,6 @@
 {
   "name": "@timberframejs/timberframejs",
-  "version": "0.0.02",
+  "version": "0.0.03",
   "description": "HTML driven reactivity and glue for customElements",
   "author": "Eric Rohlfs",
   "main": "./dist/js/index.js",
@@ -57,7 +57,7 @@
     "sinon": "^11.1.2",
     "ts-node": "^10.9.1",
     "ts-sinon": "^2.0.2",
-    "typescript": "^4.5.4",
+    "typescript": "^5.3.3",
     "terser": "^5.20.0"
   },
   "dependencies": {}

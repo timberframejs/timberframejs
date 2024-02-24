@@ -3,7 +3,7 @@ import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { tfCedEle, tfElementType, pluginArgs, workflowArgs } from '../types.js';
 import { createElement } from '../utils/index.js';
-import { attachServerRespToCedEle } from './tfServerDsl.js';
+import { attachServerRespToCedEle } from './tfServerDSL.js';
 import { gettfMeta } from './tfMeta.js';
 import { tfCedPatchWorkflow } from './tfCedPatch.js';
 import { tfCedPost } from './tfCedPost.js';

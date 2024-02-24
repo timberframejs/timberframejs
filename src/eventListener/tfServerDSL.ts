@@ -11,7 +11,7 @@ function toFormData(o) {
 
 const errorMsg = (newEle: tfCedEle) => { return `Developer, you are using the tf-ced attribute without a property of body or model for component named ${newEle?.tagName}. Either add body or model to the component, or remove the post hint` }
 
-export const isAuServer = (tfMeta: tfMetaType) => { return tfMeta.server?.length > 0 }
+export const isTfServer = (tfMeta: tfMetaType) => { return tfMeta.server?.length > 0 }
 
 export const updateCedData = (model, json, plugIn: pluginArgs) => {
   // todo: what if the CED has a get attribute? we need to turn the form into querystring params
