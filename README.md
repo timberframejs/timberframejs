@@ -1,32 +1,55 @@
-# HTML-AU
-HTML-AU is inspired by HTMX. Instead of rendering HTML on the server like HTMX, HTML-AU uses client-side JavaScript native customElements to generate HTML.
+# TimberFrameJs
+TimberFrameJs is inspired by HTMX. Instead of rendering HTML on the server like HTMX, TimberFrameJs uses client-side JavaScript native customElements to generate HTML.
 
-Uses the fundamentals of get and post to pass data between attributes and components or attributes and the server.
+The goal of TimberFrameJs
+
+* more easily pass data between components
+* simple reactivity to changes in data without complex state management strategies
+* reduce boiler plate for events in custom elements
+* separation of concerns between custom elements - child reaching up to a parent element or element on another tree
+* allow custom elements to focus on templating with data.
+
+TimberFrameJs is not meant to solve every problem. It is a simple starting point for custom elements. If more complexity is needed, then fall back to wiring up events in your custom element.
+
+
 
 ``` html
-  <button au-trigger='click' au-ced='post hello-msg' au-target="main" au-swap='innerHTML' name='msg' value='Hello World'>Show Message</button>
-  // before click
+  <button 
+    au-trigger='click'
+    au-target="main"
+    au-swap='innerHTML'
+    au-ced='post hello-msg'
+    name='msg'
+    value='Hello World'>Show Message</button>
+  // main before button click
   <main></main>
-  // after click
+  // main after button click
   <main><hello-msg>Hello World</hello-msg></main>
  ```
 
-Post to the SERVER first, to translate the message, then post to the component to render on the page
+Example interacting with the server fist then rendering the described component.
  ``` html
-  <button au-trigger='click' au-server='post ./api/translate/german' au-ced='post hello-msg' au-target="main" au-swap='innerHTML' name='msg' value='Hello World'>Show Message</button>
-  // before click
+  <button 
+    au-trigger='click'
+    au-server='post ./api/translate/german'
+    au-target="main"
+    au-swap='innerHTML'
+    au-ced='post hello-msg'
+    name='msg'
+    value='Hello World'>Show Message</button>
+  // main before button click
   <main></main>
-  // after click
+  // main after button click
   <main><hello-msg>Hallo Welt</hello-msg></main>
  ```
 
 ## Install
-```npm i @attributes-unlimited/html-au```
+```npm i timberframejs/timberframejs```
 
 
 ## Project Technical Summary
-HTML-AU is an attribute-based 'reactive' (really re-rendering) framework for web components. Inspired by HTMX.
-HTML-AU renders HTML on the client using the ES6 customElement specification. HTMX renders html on the server.
+TimberFrameJs is an attribute-based 'reactive' (really re-rendering) framework for web components. Inspired by HTMX.
+TimberFrameJs renders HTML on the client using the ES6 customElement specification. HTMX renders html on the server.
 
 CED Component Element Description
 
