@@ -1,6 +1,6 @@
 import { auConfigType } from "../../src/types.js";
 
-export function parseAuCed(raw:string, auConfig:auConfigType, ele){
+export function parseTfCed(raw:string, tfConfig:auConfigType, ele){
   // Split the raw string by '?' to separate the verb and query string
   // Check if the raw string contains a ' ' character to split verb and tagName
   if(!raw){
@@ -20,7 +20,7 @@ export function parseAuCed(raw:string, auConfig:auConfigType, ele){
   const spaceIndex = raw.indexOf(' ');
 
   // Initialize verb and tagName with default values
-  let verb = auConfig.auCed.verb;
+  let verb = tfConfig.auCed.verb;
   let tagName = '';
 
   // Check if a space was found, if yes, split the raw string

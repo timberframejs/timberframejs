@@ -1,6 +1,6 @@
 import { _auObserver } from '../auObserver.js';
 import { isAuElement } from '../common.js';
-import { getTargetEle, replaceAuTarget } from './parseAuTarget.js';
+import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { auCedEle, auElementType, pluginArgs, workflowArgs } from '../types.js';
 import { createElement } from '../utils/index.js';
 import { attachServerRespToCedEle } from './auServerDSL.js';

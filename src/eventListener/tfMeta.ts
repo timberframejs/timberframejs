@@ -1,7 +1,7 @@
 import { auConfigType, tfMetaType } from '../types.js';
 import { CED } from '../utils/index.js';
-import { parseAuCed } from './parseAuCed.js';
-import { guessTheTargetSelector } from './parseAuTarget.js';
+import { parseTfCed } from './parseTfCed.js';
+import { guessTheTargetSelector } from './parseTfTarget.js';
 
 export async function tfMetaPrep(ele: HTMLElement, auConfig: auConfigType): Promise<Partial<tfMetaType>>{
   const brains = []
@@ -38,7 +38,7 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
     trigger: initialMeta.trigger, //eventlistener already running when trigger is set
     server: ele.getAttribute('tf-server'),
     targetSelector: ele.getAttribute('tf-target'),
-    auCed: parseAuCed(ele.getAttribute('tf-ced'), auConfig, ele),
+    auCed: parseTfCed(ele.getAttribute('tf-ced'), auConfig, ele),
     auInclude:  ele.getAttribute('tf-include'), //parseAuInclude(ele.getAttribute('tf-include'), auConfig, ele),
     auSwap: ele.getAttribute('tf-swap'),
     isThis: false,

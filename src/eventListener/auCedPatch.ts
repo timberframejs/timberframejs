@@ -1,11 +1,11 @@
 import { tfMetaType, auElementType, workflowArgs } from "../types.js"
 import { makeFormData } from "./auFormData.js"
-import { getIncludeElement, getTargetEle } from "./parseAuTarget.js"
+import { getIncludeElement, getTargetEle } from "./parseTfTarget.js"
 
 /**
  * when tf-ced="post" this is a special short circuit where we do not recreate the element.
  * we instead attach the form data then call connectedCallback.
- * Note: there is work related to this in the parseAuCed function
+ * Note: there is work related to this in the parseTfCed function
  * Form input trigger example:
  * 
  *  <form tf-trigger="input" tf-ced="patch">...</form>

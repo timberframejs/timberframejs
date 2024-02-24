@@ -1,6 +1,6 @@
 import './eventListenerDSL.spec.js'
 import './auObserver.spec.js'
-import './parseAuCed.spec.js'
+import './parseTfCed.spec.js'
 import './plugins/auHref.spec.js'
 import './plugins/preserveFocus.spec.js'
 import './formData.spec.js'

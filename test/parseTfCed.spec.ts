@@ -1,11 +1,11 @@
 import { defaultConfig } from "../src/defaultConfig.js";
-import { parseAuCed } from "../src/eventListener/parseAuCed.js";
+import { parseTfCed } from "../src/eventListener/parseTfCed.js";
 
 
-describe('parseAuCed', () => {
+describe('parseTfCed', () => {
   it('should parse a raw string with verb', () => {
     const raw = 'post div?is=hello-world';
-    const parsed = parseAuCed(raw, defaultConfig, undefined);
+    const parsed = parseTfCed(raw, defaultConfig, undefined);
     const sp = new URLSearchParams('is=hello-world');
     expect(parsed).toEqual({
       raw,
@@ -18,7 +18,7 @@ describe('parseAuCed', () => {
   it('should parse a raw string without verb', () => {
     const raw = 'div?is=hello-world';
     const sp = new URLSearchParams('is=hello-world');
-    const parsed = parseAuCed(raw, defaultConfig, undefined);
+    const parsed = parseTfCed(raw, defaultConfig, undefined);
     expect(parsed).toEqual({
       raw,
       verb: defaultConfig.auCed.verb,
@@ -29,7 +29,7 @@ describe('parseAuCed', () => {
 
   it('should parse a raw string with no query string', () => {
     const raw = 'get span';
-    const parsed = parseAuCed(raw, defaultConfig, undefined);
+    const parsed = parseTfCed(raw, defaultConfig, undefined);
     const sp = new URLSearchParams('');
     expect(parsed).toEqual({
       raw,
