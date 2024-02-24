@@ -1,7 +1,7 @@
 import { defaultConfig } from "../src/defaultConfig.js"
 import { tfMetaPrep, gettfMeta } from "../src/eventListener/tfMeta.js"
 import { auObserver} from "../src/index.js"
-import { auElementType, tfMetaType} from "../src/types.js"
+import { tfElementType, tfMetaType} from "../src/types.js"
 import { CED, createElement, html } from "../src/index.js"
 
 
@@ -24,7 +24,7 @@ describe('auObserver',()=>{
       tf-target='next'
       tf-trigger='input'/>
     `
-    const input = frag.querySelector<auElementType>(':scope input')
+    const input = frag.querySelector<tfElementType>(':scope input')
     host.append(frag)
     // need time for the mutation observer to do it's thing.
     setTimeout(() => {
@@ -37,7 +37,7 @@ describe('auObserver',()=>{
 })
 
 describe('gettfMeta',()=>{
-  let inputEle:auElementType
+  let inputEle:tfElementType
   let tfMeta:tfMetaType
   const inputCED = {
     tagName:'input',
@@ -51,13 +51,13 @@ describe('gettfMeta',()=>{
   }as CED<HTMLInputElement>
 
   beforeAll(async ()=>{
-    inputEle = createElement<auElementType>(inputCED)
+    inputEle = createElement<tfElementType>(inputCED)
     const initialMeta = await tfMetaPrep(inputEle, defaultConfig)
     tfMeta = await gettfMeta(inputEle, initialMeta, defaultConfig)
   })
   it('has tf-ced',()=>{
     // @ts-ignore
-    expect(tfMeta.auCed.raw).toBe(inputCED.attributes['tf-ced'] as string)
+    expect(tfMeta.tfCed.raw).toBe(inputCED.attributes['tf-ced'] as string)
   })
   it('has tf-target',()=>{
     // @ts-ignore
@@ -68,17 +68,17 @@ describe('gettfMeta',()=>{
     expect(tfMeta.trigger).toBe(inputCED.attributes['tf-trigger'] as string)
   })
   it('tf-swap is null',()=>{
-    expect(tfMeta.auSwap).toBe('outerHTML')
+    expect(tfMeta.tfSwap).toBe('outerHTML')
   })
   it('tfMeta au ced verb tobe post',()=>{
-    expect(tfMeta.auCed.verb).toBe('post')
+    expect(tfMeta.tfCed.verb).toBe('post')
   })
   it('searchParams tobe is=hello-world-div',()=>{
-    expect(tfMeta.auCed.qs.get('is')).toBe('hello-world-div')
+    expect(tfMeta.tfCed.qs.get('is')).toBe('hello-world-div')
   })
 
-  it('auInclude is null',()=>{
-    expect(tfMeta.auInclude).toBe(null)
+  it('tfInclude is null',()=>{
+    expect(tfMeta.tfInclude).toBe(null)
   })
   it('isThis tobe false',()=>{
     expect(tfMeta.isThis).toBe(false)

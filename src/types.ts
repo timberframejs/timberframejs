@@ -1,19 +1,19 @@
 import { CED } from "./utils/index.js"
 
 
-export type auSwapType = 'none' | 'innerHTML' | 'outerHTML' | 'delete'
+export type tfSwapType = 'none' | 'innerHTML' | 'outerHTML' | 'delete'
 
 export type tfMetaType = {
   trigger: string
   targetSelector: string | null
   server: string | null
   /**
-   * note: there are subtle differences between auCed and ced.
-   *  The auCED is the attribute that is parsed into an object then later becomes the CED
+   * note: there are subtle differences between tfCed and ced.
+   *  The tfCed is the attribute that is parsed into an object then later becomes the CED
    *  */
-  auCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
-  auSwap: string // auSwapType
-  auInclude: string | null
+  tfCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
+  tfSwap: string // tfSwapType
+  tfInclude: string | null
   isThis: boolean,
   /** messages for decisions we make trying to be smart for the user */
   brains: Array<string>
@@ -27,14 +27,14 @@ export type auAttributeTypes = {
   'tf-cmd'?: string
   'tf-trigger'?: string
   'tf-include'?: string
-  'tf-swap'?: auSwapType
+  'tf-swap'?: tfSwapType
   'tf-href'?: string
   'tf-preserve-focus'?: booleanAttribute
   'tf-attach-swapped'?: booleanAttribute
   'tf-server'?: string
 }
 
-export type auElementType = {
+export type tfElementType = {
   auState: 'processed'
   auAbortController: AbortController
   tfMeta: tfMetaType
@@ -48,7 +48,7 @@ export type auElementType = {
 } & HTMLElement
 
 
-export type auCedEle = HTMLElement & {
+export type tfCedEle = HTMLElement & {
   body?: unknown
   model?: unknown
   tfMeta?: tfMetaType
@@ -65,10 +65,10 @@ export type tfConfigType = {
     'tf-swap': string
     'tf-trigger': string
   }
-  auCed: {
+  tfCed: {
     verb: 'post' | 'get' | 'patch'
   },
-  auInclude:{
+  tfInclude:{
     verb: 'post'|'get'
   }
   plugins: Array<pluginDefinition>
@@ -85,15 +85,15 @@ export type pluginArgs = {
   e: Event
   tfMeta: tfMetaType
   // todo: define what ele is, if we can
-  ele: auElementType
+  ele: tfElementType
   targetEle?: HTMLElement
-  cedEle?: auCedEle
+  cedEle?: tfCedEle
   tfConfig: tfConfigType
 }
 
 export type eventSetupArgs = {
   // the element to setup listeners on
-  ele: auElementType,
+  ele: tfElementType,
   // cmd: string,
   initialMeta: Partial<tfMetaType>,
   tfConfig: tfConfigType

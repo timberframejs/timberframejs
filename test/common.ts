@@ -1,5 +1,5 @@
 import { isTfElement } from "../src/common.js";
-import { tfConfigType, auElementType } from "../src/types.js";
+import { tfConfigType, tfElementType } from "../src/types.js";
 
 export async function recurseTestNodes(node: HTMLElement, tfConfig: tfConfigType) {
   if (node.nodeType === Node.ELEMENT_NODE) {

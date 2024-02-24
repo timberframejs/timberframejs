@@ -38,9 +38,9 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
     trigger: initialMeta.trigger, //eventlistener already running when trigger is set
     server: ele.getAttribute('tf-server'),
     targetSelector: ele.getAttribute('tf-target'),
-    auCed: parseTfCed(ele.getAttribute('tf-ced'), tfConfig, ele),
-    auInclude:  ele.getAttribute('tf-include'), //parseAuInclude(ele.getAttribute('tf-include'), tfConfig, ele),
-    auSwap: ele.getAttribute('tf-swap'),
+    tfCed: parseTfCed(ele.getAttribute('tf-ced'), tfConfig, ele),
+    tfInclude:  ele.getAttribute('tf-include'), //parsetfInclude(ele.getAttribute('tf-include'), tfConfig, ele),
+    tfSwap: ele.getAttribute('tf-swap'),
     isThis: false,
     brains: initialMeta.brains,
     ced: {
@@ -51,7 +51,7 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
   }
 
 
-  tfMeta.ced.tagName = tfMeta.auCed.tagName
+  tfMeta.ced.tagName = tfMeta.tfCed.tagName
   // figure out ced element name
   if (tfMeta.ced.tagName === 'this') {
     tfMeta.isThis = true
@@ -68,14 +68,14 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
     // BUT picking and choosing interfears with the whole get/post form data serialization thing.
     // technically all form values should be paramertized, but what about a big text field?
     // todo: move to tfMeta
-    for (const [key, value] of tfMeta.auCed.qs.entries()) {
+    for (const [key, value] of tfMeta.tfCed.qs.entries()) {
       tfMeta.ced.attributes[key] = value
     }
 
      //input auElement special use case where the input is basically the form so we can copy into get any mattaching verb searchParameter
      if (ele.tagName === 'INPUT') {
       // overwrite searchparam->attrbiute with the value of the input box
-      if (tfMeta.auCed.qs.get((ele as HTMLInputElement)?.name)) {
+      if (tfMeta.tfCed.qs.get((ele as HTMLInputElement)?.name)) {
         tfMeta.ced.attributes[(ele as HTMLInputElement)?.name] = (ele as HTMLInputElement)?.value
       }
     }
@@ -91,6 +91,6 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
 
   // given <div tf-ced="get hello-msg?msg=hello world" we want to use the parameters as attributes
   // this will be an important part of the convention
-  // tfMeta.searchParams = new URLSearchParams(auCedParts[1])
+  // tfMeta.searchParams = new URLSearchParams(tfCedParts[1])
   return tfMeta
 }

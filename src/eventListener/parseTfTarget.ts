@@ -94,8 +94,8 @@ export function getTargetEle(auElement: HTMLElement, cmd: string): HTMLElement {
 /** not sure this is idea, we might include it in the form but than might not mean it's the target to replace
 */
 export function getIncludeElement(ele: HTMLElement, tfMeta: tfMetaType) {
-  if (tfMeta.auInclude?.length > 0) {
-    return getTargetEle(ele, tfMeta.auInclude)
+  if (tfMeta.tfInclude?.length > 0) {
+    return getTargetEle(ele, tfMeta.tfInclude)
   }
   return ele
 }
@@ -104,7 +104,7 @@ export function replaceAuTarget(plugIn:pluginArgs){
 
   // need to play with this some more and get it working better
   let toDispose = new DocumentFragment();
-  switch (plugIn.tfMeta.auSwap) {
+  switch (plugIn.tfMeta.tfSwap) {
     case swapOptions.innerHTML:
       // could see if the inner has any auElements and remove the event listeners
       while (plugIn.targetEle.firstChild) {

@@ -20,7 +20,7 @@ export const defaultConfig = {
     'tf-swap': swapOptions.outerHTML,
     'tf-trigger':triggerOptions.click,
   },
-  auCed:{
+  tfCed:{
     verb:'post'
   },
   plugins:[ tfHrefPlugin, preserveFocusPlugin, tfHostPlugIn, tfHashPlugin]

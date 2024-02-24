@@ -1,4 +1,4 @@
-import { auElementType } from "src/types";
+import { tfElementType } from "src/types";
 
 export function getSelects(hostEle: HTMLElement) {
   // todo: might be helpful to return the the options too
@@ -77,7 +77,7 @@ export function tryAddEventTargetAsFormControl(controls, ele) {
  * @node - this could be the element target or it could be the included wrapping element like as in the form
  * @param ele - the element the event was triggered on basically e.target
  */
-export function makeFormData(node: HTMLElement, ele: auElementType): FormData {
+export function makeFormData(node: HTMLElement, ele: tfElementType): FormData {
   // todo: could see if it is already a form and just return all the controls 
 
   // is single input element so no children to query

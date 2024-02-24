@@ -1,4 +1,4 @@
-import { auElementType, pluginArgs } from "src/types.js";
+import { tfElementType, pluginArgs } from "src/types.js";
 import { getIncludeElement } from "./parseTfTarget.js";
 import { makeFormData } from "./tfFormData.js";
 import { isAuServer } from "./tfServerDsl.js";
@@ -6,8 +6,8 @@ import { isAuServer } from "./tfServerDsl.js";
 export type copyEleDataType = {
   hasModel: boolean
   hasBody: boolean
-  cedEle: auElementType
-  formDataEle: auElementType
+  cedEle: tfElementType
+  formDataEle: tfElementType
   fd: FormData
 }
 
@@ -38,8 +38,8 @@ export const addModelData = (all) => {
 export function tfCedPost(pia: pluginArgs) {
   const { tfMeta, ele, cedEle } = pia;
   // not sure this is any different for get or post
-  if (!(tfMeta.auCed.verb === 'post' && !isAuServer(tfMeta))) { return }
-  const formDataEle = getIncludeElement(ele, tfMeta) as auElementType
+  if (!(tfMeta.tfCed.verb === 'post' && !isAuServer(tfMeta))) { return }
+  const formDataEle = getIncludeElement(ele, tfMeta) as tfElementType
   // note: user gets to decide which format by what they put in
   //       their componet: body for form , model of json, or both body and model
   const fd = makeFormData(formDataEle, ele)

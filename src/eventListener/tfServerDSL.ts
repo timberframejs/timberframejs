@@ -1,6 +1,6 @@
 import { objectToQueryParams } from "../common.js"
 import { makeFormData } from "./tfFormData.js"
-import { auCedEle, tfMetaType, pluginArgs } from "../types.js"
+import { tfCedEle, tfMetaType, pluginArgs } from "../types.js"
 import { getIncludeElement } from "../eventListener/parseTfTarget.js"
 
 //todo:need to test this function
@@ -9,7 +9,7 @@ function toFormData(o) {
   return Object.entries(o).reduce((d, e) => (d.append(...e), d), new FormData())
 }
 
-const errorMsg = (newEle: auCedEle) => { return `Developer, you are using the tf-ced attribute without a property of body or model for component named ${newEle?.tagName}. Either add body or model to the component, or remove the post hint` }
+const errorMsg = (newEle: tfCedEle) => { return `Developer, you are using the tf-ced attribute without a property of body or model for component named ${newEle?.tagName}. Either add body or model to the component, or remove the post hint` }
 
 export const isAuServer = (tfMeta: tfMetaType) => { return tfMeta.server?.length > 0 }
 

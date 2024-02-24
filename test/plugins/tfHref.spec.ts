@@ -1,5 +1,5 @@
 import { tfHref } from "../../src/plugins/tfHref/tfHref.js";
-import { auElementType, pluginArgs } from "../../src/types.js";
+import { tfElementType, pluginArgs } from "../../src/types.js";
 
 const _window = {
   location:{
@@ -25,7 +25,7 @@ describe('tfHref function', () => {
     const plugIn = {
       ele,
       tfMeta: {
-        auCed: {
+        tfCed: {
           tagName,
           qs,
         },

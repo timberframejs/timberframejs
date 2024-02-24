@@ -1,4 +1,4 @@
-import { tfMetaType, auElementType, workflowArgs } from "../types.js"
+import { tfMetaType, tfElementType, workflowArgs } from "../types.js"
 import { makeFormData } from "./tfFormData.js"
 import { getIncludeElement, getTargetEle } from "./parseTfTarget.js"
 
@@ -22,11 +22,11 @@ import { getIncludeElement, getTargetEle } from "./parseTfTarget.js"
 export const tfCedPatchWorkflow = (wf:workflowArgs, tfMeta:tfMetaType) => {
   const { ele } = wf
 
-  const includedEle = tfMeta.auInclude === null ? ele : getIncludeElement(ele, tfMeta) as auElementType
+  const includedEle = tfMeta.tfInclude === null ? ele : getIncludeElement(ele, tfMeta) as tfElementType
   // note: user gets to decide which format by what they put in their componet
   const fd = makeFormData(includedEle, ele)
   // the default is to patch the included ele
-  const target = tfMeta.auCed.raw === 'patch target' ? getTargetEle(ele, tfMeta.targetSelector) as auElementType: includedEle;
+  const target = tfMeta.tfCed.raw === 'patch target' ? getTargetEle(ele, tfMeta.targetSelector) as tfElementType: includedEle;
   const hasBody = target.hasOwnProperty('body')
   const hasModel = target.hasOwnProperty('model')
   if (hasBody) {
@@ -51,7 +51,7 @@ export const tfCedPatchWorkflow = (wf:workflowArgs, tfMeta:tfMetaType) => {
     throw new Error('Using attribute tf-ced="patch" the element or the included element needs a property of body or model.')
   }
 
-  if(tfMeta.auCed.raw === 'patch target'){
+  if(tfMeta.tfCed.raw === 'patch target'){
     // todo: throw a helpful error if the target is not a custom element.
     target?.connectedCallback()
     return;

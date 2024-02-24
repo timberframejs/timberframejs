@@ -21,7 +21,7 @@ describe('parseTfCed', () => {
     const parsed = parseTfCed(raw, defaultConfig, undefined);
     expect(parsed).toEqual({
       raw,
-      verb: defaultConfig.auCed.verb,
+      verb: defaultConfig.tfCed.verb,
       tagName: 'div',
       qs: sp,
     });

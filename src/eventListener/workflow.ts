@@ -1,7 +1,7 @@
 import { _tfObserver } from '../tfObserver.js';
 import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
-import { auCedEle, auElementType, pluginArgs, workflowArgs } from '../types.js';
+import { tfCedEle, tfElementType, pluginArgs, workflowArgs } from '../types.js';
 import { createElement } from '../utils/index.js';
 import { attachServerRespToCedEle } from './tfServerDsl.js';
 import { gettfMeta } from './tfMeta.js';
@@ -20,7 +20,7 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
   }
 
   if (isTfElement(ele as HTMLElement)) {
-    (ele as auElementType).auAbortController.abort()
+    (ele as tfElementType).auAbortController.abort()
   }
   Array.from(ele.children).forEach(childEle => { removeOldEventListeners(childEle) })
 }
@@ -31,11 +31,11 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
   const tfMeta = await gettfMeta(ele, initialMeta, tfConfig)
 
   // patch has a totally different workflow, this could even move up one level
-  if (tfMeta.auCed.raw.startsWith('patch')) {
+  if (tfMeta.tfCed.raw.startsWith('patch')) {
     tfCedPatchWorkflow(wf, tfMeta)
     return;
   }
-  const cedEle = createElement<auCedEle>(tfMeta.ced)
+  const cedEle = createElement<tfCedEle>(tfMeta.ced)
 
   const plugInArgs = {
     e,

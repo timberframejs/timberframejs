@@ -20,7 +20,7 @@ export function parseTfCed(raw:string, tfConfig:tfConfigType, ele){
   const spaceIndex = raw.indexOf(' ');
 
   // Initialize verb and tagName with default values
-  let verb = tfConfig.auCed.verb;
+  let verb = tfConfig.tfCed.verb;
   let tagName = '';
 
   // Check if a space was found, if yes, split the raw string

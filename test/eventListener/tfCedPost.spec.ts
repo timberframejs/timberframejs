@@ -8,7 +8,7 @@ defineElement(POST_TEST, PostTest);
 
 const auCfg = prepareAuConfig(defaultConfig);
 
-describe('auCed POST', () => {
+describe('tfCed POST', () => {
   let host 
   beforeEach(()=>{
     host = createElement<HTMLDivElement>({tagName:'div'})
