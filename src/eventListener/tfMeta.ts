@@ -1,9 +1,9 @@
-import { auConfigType, tfMetaType } from '../types.js';
+import { tfConfigType, tfMetaType } from '../types.js';
 import { CED } from '../utils/index.js';
 import { parseTfCed } from './parseTfCed.js';
 import { guessTheTargetSelector } from './parseTfTarget.js';
 
-export async function tfMetaPrep(ele: HTMLElement, auConfig: auConfigType): Promise<Partial<tfMetaType>>{
+export async function tfMetaPrep(ele: HTMLElement, auConfig: tfConfigType): Promise<Partial<tfMetaType>>{
   const brains = []
   if (ele.getAttribute('tf-trigger') === null) {
     ele.setAttribute('tf-trigger', auConfig.defaultAttributes['tf-trigger']);
@@ -32,7 +32,7 @@ export async function tfMetaPrep(ele: HTMLElement, auConfig: auConfigType): Prom
   return tfMeta
 }
 
-export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType>, auConfig: auConfigType): Promise<tfMetaType> {
+export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType>, auConfig: tfConfigType): Promise<tfMetaType> {
 
   const tfMeta = {
     trigger: initialMeta.trigger, //eventlistener already running when trigger is set

@@ -1,6 +1,6 @@
-import { auConfigType } from "../../src/types.js";
+import { tfConfigType } from "../../src/types.js";
 
-export function parseTfCed(raw:string, tfConfig:auConfigType, ele){
+export function parseTfCed(raw:string, tfConfig:tfConfigType, ele){
   // Split the raw string by '?' to separate the verb and query string
   // Check if the raw string contains a ' ' character to split verb and tagName
   if(!raw){

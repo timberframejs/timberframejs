@@ -1,6 +1,6 @@
 import { triggerOptions } from "../auConstants.js";
 import { mainWorkflow } from "./workflow.js";
-import { auConfigType, auElementType, eventSetupArgs, workflowArgs } from "../types.js";
+import { tfConfigType, auElementType, eventSetupArgs, workflowArgs } from "../types.js";
 import { tfMetaPrep } from "./tfMeta.js";
 
 const triggerKeys = Object.values(triggerOptions)
@@ -21,7 +21,7 @@ export async function basicEventListener(eventSetup: eventSetupArgs) {
 }
 
 
-export async function eventListenerBuilder(ele: auElementType, auConfig:auConfigType) {
+export async function eventListenerBuilder(ele: auElementType, auConfig:tfConfigType) {
   // prevent infinate loop or already processed elements
   if (ele.auState === 'processed') { return; }
   ele.auState = 'processed'

@@ -1,12 +1,12 @@
 import { pluginDefinition } from "src/types.js";
-import { auHash } from "./auHash.js";
+import { tfHash } from "./tfHash.js";
 
 
-export const auHashPlugin = {
-  name:'auHash',
+export const tfHashPlugin = {
+  name:'tfHash',
   endEventCallback: {
     when:'end',
-    callback: auHash,
+    callback: tfHash,
     args:{
       _window: window
     }

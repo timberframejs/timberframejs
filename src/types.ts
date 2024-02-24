@@ -56,8 +56,8 @@ export type auCedEle = HTMLElement & {
   value?:string
 }
 
-export type auConfigType = {
-  eventListenerBuilder: (ele: HTMLElement, auConfig: auConfigType) => Promise<void>
+export type tfConfigType = {
+  eventListenerBuilder: (ele: HTMLElement, auConfig: tfConfigType) => Promise<void>
   workflow?: (wf: workflowArgs) => Promise<pluginArgs>
   serverPost: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
   serverGet: (url: string, plugIn: pluginArgs) => Promise<unknown>
@@ -88,7 +88,7 @@ export type pluginArgs = {
   ele: auElementType
   targetEle?: HTMLElement
   cedEle?: auCedEle
-  auConfig: auConfigType
+  auConfig: tfConfigType
 }
 
 export type eventSetupArgs = {
@@ -96,7 +96,7 @@ export type eventSetupArgs = {
   ele: auElementType,
   // cmd: string,
   initialMeta: Partial<tfMetaType>,
-  auConfig: auConfigType
+  auConfig: tfConfigType
 }
 
 export type workflowArgs = eventSetupArgs & {

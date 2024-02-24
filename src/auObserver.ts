@@ -1,7 +1,7 @@
 import { isAuElement } from './common.js';
-import { auConfigType } from './types.js';
+import { tfConfigType } from './types.js';
 
-export function recurseNodes(node: HTMLElement, auConfig: auConfigType) {
+export function recurseNodes(node: HTMLElement, auConfig: tfConfigType) {
   if (node.nodeType === Node.ELEMENT_NODE) {
     // console.log(node?.tagName)
     node.childNodes.forEach(child => recurseNodes(child as HTMLHtmlElement, auConfig))
@@ -10,7 +10,7 @@ export function recurseNodes(node: HTMLElement, auConfig: auConfigType) {
   }
 }
 
-const getCallback = (auConfig: auConfigType) => {
+const getCallback = (auConfig: tfConfigType) => {
   // Callback function to execute when mutations are observed
   return (mutationList: MutationRecord[], observer) => {
     for (const mutation of mutationList) {
@@ -21,7 +21,7 @@ const getCallback = (auConfig: auConfigType) => {
   };
 }
 
-export const prepareAuConfig = (auConfig: auConfigType) => {
+export const prepareAuConfig = (auConfig: tfConfigType) => {
   auConfig._plugins = {
     atEnd: auConfig.plugins.filter(p => p.endEventCallback !== undefined),
     preflight: auConfig.plugins.filter(p => p.preflight !== undefined)
@@ -29,7 +29,7 @@ export const prepareAuConfig = (auConfig: auConfigType) => {
   return auConfig;
 }
 
-export function _auObserver(ele: HTMLElement, auConfig: auConfigType) {
+export function _auObserver(ele: HTMLElement, auConfig: tfConfigType) {
   if (!Object.isFrozen(auConfig)) {
     // organize plugins once to improve performance
     prepareAuConfig(auConfig)
