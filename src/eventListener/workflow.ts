@@ -3,10 +3,10 @@ import { isAuElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { auCedEle, auElementType, pluginArgs, workflowArgs } from '../types.js';
 import { createElement } from '../utils/index.js';
-import { attachServerRespToCedEle } from './auServerDSL.js';
+import { attachServerRespToCedEle } from './tfServerDsl.js';
 import { gettfMeta } from './tfMeta.js';
-import { auCedPatchWorkflow } from './auCedPatch.js';
-import { auCedPost } from './auCedPost.js';
+import { tfCedPatchWorkflow } from './tfCedPatch.js';
+import { tfCedPost } from './tfCedPost.js';
 
 /**
  * destroy the old event listener so we don't degrade performance
@@ -32,7 +32,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
 
   // patch has a totally different workflow, this could even move up one level
   if (tfMeta.auCed.raw.startsWith('patch')) {
-    auCedPatchWorkflow(wf, tfMeta)
+    tfCedPatchWorkflow(wf, tfMeta)
     return;
   }
   const cedEle = createElement<auCedEle>(tfMeta.ced)
@@ -48,7 +48,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
   // attachServerResp is mutually exclusive against update the component with form data
   await attachServerRespToCedEle(plugInArgs)
 
-  auCedPost(plugInArgs)
+  tfCedPost(plugInArgs)
 
   cedEle.tfMeta = { ...tfMeta } // add the metadata for debugging and other edge use cases like maybe they want to parse the tf-post query params
   // the observer will decide if it needs to wire up as another auElement

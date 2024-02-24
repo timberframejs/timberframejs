@@ -19,7 +19,7 @@ import { getIncludeElement, getTargetEle } from "./parseTfTarget.js"
  *      tf-target="host">click</button>
  * 
  */
-export const auCedPatchWorkflow = (wf:workflowArgs, tfMeta:tfMetaType) => {
+export const tfCedPatchWorkflow = (wf:workflowArgs, tfMeta:tfMetaType) => {
   const { ele } = wf
 
   const includedEle = tfMeta.auInclude === null ? ele : getIncludeElement(ele, tfMeta) as auElementType

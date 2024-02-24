@@ -1,7 +1,7 @@
 import { auElementType, pluginArgs } from "src/types.js";
 import { getIncludeElement } from "./parseTfTarget.js";
 import { makeFormData } from "./auFormData.js";
-import { isAuServer } from "./auServerDSL.js";
+import { isAuServer } from "./tfServerDsl.js";
 
 export type copyEleDataType = {
   hasModel: boolean
@@ -35,7 +35,7 @@ export const addModelData = (all) => {
   }
 }
 
-export function auCedPost(pia: pluginArgs) {
+export function tfCedPost(pia: pluginArgs) {
   const { tfMeta, ele, cedEle } = pia;
   // not sure this is any different for get or post
   if (!(tfMeta.auCed.verb === 'post' && !isAuServer(tfMeta))) { return }

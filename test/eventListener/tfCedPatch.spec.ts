@@ -8,7 +8,7 @@ defineElement(PATCH_TEST, PatchTest);
 
 const auCfg = prepareAuConfig(defaultConfig);
 
-describe('auCedPatch', () => {
+describe('tfCedPatch', () => {
   describe('child btn click', () => {
     it('should not overwrite existing values', (done) => {
       const ele = createElement<PatchTest>({
