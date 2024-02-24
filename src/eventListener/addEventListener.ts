@@ -1,4 +1,4 @@
-import { triggerOptions } from "../auConstants.js";
+import { triggerOptions } from "../tfConstants.js";
 import { mainWorkflow } from "./workflow.js";
 import { tfConfigType, auElementType, eventSetupArgs, workflowArgs } from "../types.js";
 import { tfMetaPrep } from "./tfMeta.js";

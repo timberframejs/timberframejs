@@ -1,4 +1,4 @@
-import { swapOptions, targetOptions } from "../auConstants.js";
+import { swapOptions, targetOptions } from "../tfConstants.js";
 import { tfMetaType, pluginArgs } from "../types.js";
 
 /**

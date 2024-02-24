@@ -1,6 +1,6 @@
 export * from './utils/idMaker/index.js'
 export * from './tfObserver.js'
-export * from './auConstants.js'
+export * from './tfConstants.js'
 export * from './utils/index.js'
 export * from './defaultConfig.js'
 import { _tfObserver } from './tfObserver.js'

@@ -1,4 +1,4 @@
-import { swapOptions, triggerOptions } from "./auConstants.js";
+import { swapOptions, triggerOptions } from "./tfConstants.js";
 import { eventListenerBuilder } from "./eventListener/addEventListener.js";
 import { mainWorkflow } from "./eventListener/workflow.js";
 import { getJson, postJson } from "./fetcher.js";
@@ -17,7 +17,7 @@ export const defaultConfig = {
   serverPost:postJson,
   serverGet: getJson,
   defaultAttributes:{
-    'tf-swap': swapOptions.outeHTML,
+    'tf-swap': swapOptions.outerHTML,
     'tf-trigger':triggerOptions.click,
   },
   auCed:{
