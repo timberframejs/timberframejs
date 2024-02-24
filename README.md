@@ -15,10 +15,10 @@ TimberFrameJs is not meant to solve every problem. It is a simple starting point
 
 ``` html
   <button 
-    au-trigger='click'
-    au-target="main"
-    au-swap='innerHTML'
-    au-ced='post hello-msg'
+    tf-trigger='click'
+    tf-target="main"
+    tf-swap='innerHTML'
+    tf-ced='post hello-msg'
     name='msg'
     value='Hello World'>Show Message</button>
   // main before button click
@@ -30,11 +30,11 @@ TimberFrameJs is not meant to solve every problem. It is a simple starting point
 Example interacting with the server fist then rendering the described component.
  ``` html
   <button 
-    au-trigger='click'
-    au-server='post ./api/translate/german'
-    au-target="main"
-    au-swap='innerHTML'
-    au-ced='post hello-msg'
+    tf-trigger='click'
+    tf-server='post ./api/translate/german'
+    tf-target="main"
+    tf-swap='innerHTML'
+    tf-ced='post hello-msg'
     name='msg'
     value='Hello World'>Show Message</button>
   // main before button click
@@ -57,7 +57,7 @@ CED explained
 [MDN CreateElement for web components](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement#web_component_example)
 
 ``` html
-  <div au-ced='div?is=hello-world&msg=nice to meet you'>click</div>
+  <div tf-ced='div?is=hello-world&msg=nice to meet you'>click</div>
 ```
 Translates to 
 ``` js
@@ -99,11 +99,11 @@ export class HelloWorld extends HTMLElement{
   <click-counter>
     <input name="counter" value="54">
     <button
-        au-trigger="click"
-        au-ced="click-counter"
-        au-include="closest click-counter"
-        // au-server="post ./api/click" // to post the data to a server, then send the results to the component
-        au-target="post closest click-counter">add one</button>
+        tf-trigger="click"
+        tf-ced="click-counter"
+        tf-include="closest click-counter"
+        // tf-server="post ./api/click" // to post the data to a server, then send the results to the component
+        tf-target="post closest click-counter">add one</button>
   </click-counter>
 
 ```
@@ -121,10 +121,10 @@ export class ClickCounter extends HTMLElement {
     const frag = html`
       <input name='counter' value='${(previousCount + 1).toString()}' />
       <button
-        au-trigger='click'
-        au-ced='${CLICK_COUNTER}'
-        au-include='closest ${CLICK_COUNTER}'
-        au-target='post closest ${CLICK_COUNTER}'>click me</button>
+        tf-trigger='click'
+        tf-ced='${CLICK_COUNTER}'
+        tf-include='closest ${CLICK_COUNTER}'
+        tf-target='post closest ${CLICK_COUNTER}'>click me</button>
     `
     this.append(frag)
   }

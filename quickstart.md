@@ -11,7 +11,7 @@
     auObserver(document.body, defaultConfig)
   </script>
   ... in body
-  <button au-trigger='click' au-ced='post hello-msg' au-target="main" au-swap='innerHTML' name='msg' value='Hello World'>Show Message</button>
+  <button tf-trigger='click' tf-ced='post hello-msg' tf-target="main" tf-swap='innerHTML' name='msg' value='Hello World'>Show Message</button>
   <main></main>
   // returns
   <main><hello-msg>Hello World</hello-msg></main>

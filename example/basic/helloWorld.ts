@@ -4,13 +4,13 @@ export class HelloWorld extends HTMLElement {
   
   connectedCallback(){
     const frag = html`<div
-      au-ced='get hello-message?msg=click again'
-      au-trigger='click'
-      au-target='#target1'>Hello world</div>
+      tf-ced='get hello-message?msg=click again'
+      tf-trigger='click'
+      tf-target='#target1'>Hello world</div>
     <div id='target1'
-      au-ced='get hello-message?msg=all done'
-      au-trigger='click'
-      au-target='this'></div>`
+      tf-ced='get hello-message?msg=all done'
+      tf-trigger='click'
+      tf-target='this'></div>`
     this.append(frag)
   }
 }

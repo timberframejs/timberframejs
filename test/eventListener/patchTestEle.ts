@@ -22,11 +22,11 @@ export class PatchTest extends HTMLElement {
       <input type="text" name="sound" value="${this.body?.get('sound')?.toString() ?? ''}"/>
       <input type="number" name="counter" value="${(previousCounter + 1).toString()}" />
       <button
-        au-trigger="click"
-        au-ced="patch"
-        au-host="closest ${PATCH_TEST}"
-        au-include="host"
-        au-target="host">click</button>
+        tf-trigger="click"
+        tf-ced="patch"
+        tf-host="closest ${PATCH_TEST}"
+        tf-include="host"
+        tf-target="host">click</button>
     `
     this.replaceChildren()
     this.append(frag);

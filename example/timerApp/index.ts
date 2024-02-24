@@ -33,10 +33,10 @@ function templateLitMain() {
           <span class="cell">
             <a
               class="link-like"
-              au-trigger="click"
-              au-ced="post dialog?is=${EDIT_TIMER}&showmodal&action=add"
-              au-target="dialog[is='${EDIT_TIMER}']"
-              au-include="closest ${TIMER_TABLE}"
+              tf-trigger="click"
+              tf-ced="post dialog?is=${EDIT_TIMER}&showmodal&action=add"
+              tf-target="dialog[is='${EDIT_TIMER}']"
+              tf-include="closest ${TIMER_TABLE}"
             >Add</a>
           </span>
         </div>
@@ -67,10 +67,10 @@ function templateLitRow(item) {
       <span class="cell">${item.time}</span>
       <span class="cell">
         <a class="link-like"
-          au-trigger="click"
-          au-ced="dialog?is=${EDIT_TIMER}&showmodal&action=edit&id=${item.id}"
-          au-target="dialog[is='${EDIT_TIMER}']"
-          au-include="closest ${TIMER_TABLE}"
+          tf-trigger="click"
+          tf-ced="dialog?is=${EDIT_TIMER}&showmodal&action=edit&id=${item.id}"
+          tf-target="dialog[is='${EDIT_TIMER}']"
+          tf-include="closest ${TIMER_TABLE}"
           >Edit</a>
       </span>
     </div>
@@ -150,12 +150,12 @@ export class EditTimer extends HTMLDialogElement {
       </div>
       <div>
         <label for="button"></label>
-        <!-- au-ced="", ced means component element definition, patch means patch the au-include -->
+        <!-- tf-ced="", ced means component element definition, patch means patch the tf-include -->
         <button
-          au-trigger="click"
-          au-ced="patch target"
-          au-include="closest dialog[is=${EDIT_TIMER}]"
-          au-target="closest ${TIMER_TABLE}"
+          tf-trigger="click"
+          tf-ced="patch target"
+          tf-include="closest dialog[is=${EDIT_TIMER}]"
+          tf-target="closest ${TIMER_TABLE}"
         >Save</button>
     `
   }

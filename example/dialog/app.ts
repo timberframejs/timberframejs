@@ -19,24 +19,24 @@ const main = html`
 <main>
   <!-- Example 1-->
   <button
-    au-ced="get dialog?is=dialog-get&open"
-    au-target="#${placeholderCED.attributes.id}"
-    au-swap="${swapOptions.innerHTML}"
-    au-trigger="click">get open dialog attribute</button>
+    tf-ced="get dialog?is=dialog-get&open"
+    tf-target="#${placeholderCED.attributes.id}"
+    tf-swap="${swapOptions.innerHTML}"
+    tf-trigger="click">get open dialog attribute</button>
   <!-- Example 2-->
   <button
-    au-ced="post dialog?is=dialog-post"
-    au-target="#${placeholderCED.attributes.id}"
-    au-trigger="click"
-    au-swap="${swapOptions.innerHTML}"
+    tf-ced="post dialog?is=dialog-post"
+    tf-target="#${placeholderCED.attributes.id}"
+    tf-trigger="click"
+    tf-swap="${swapOptions.innerHTML}"
     name="button_action"
     value="show">post dialog.show</button>
   <!-- Example 3-->
   <button
-    au-ced="post dialog?is=dialog-post"
-    au-target="#${placeholderCED.attributes.id}"
-    au-trigger="click"
-    au-swap="${swapOptions.innerHTML}"
+    tf-ced="post dialog?is=dialog-post"
+    tf-target="#${placeholderCED.attributes.id}"
+    tf-trigger="click"
+    tf-swap="${swapOptions.innerHTML}"
     name="button_action"
     value="showModal">post dialog.showModal</button>
   </main>

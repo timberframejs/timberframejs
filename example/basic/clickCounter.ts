@@ -12,10 +12,10 @@ export class ClickCounter extends HTMLElement {
     const frag = html`
       <input name='counter' value='${count}' />
       <button
-        au-trigger='click'
-        au-ced='post ${CLICK_COUNTER}'
-        au-include='closest ${CLICK_COUNTER}'
-        au-target='#${this.id}'>click me</button>
+        tf-trigger='click'
+        tf-ced='post ${CLICK_COUNTER}'
+        tf-include='closest ${CLICK_COUNTER}'
+        tf-target='#${this.id}'>click me</button>
     `
     this.append(frag)
   }

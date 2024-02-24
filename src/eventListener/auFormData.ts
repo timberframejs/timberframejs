@@ -49,7 +49,7 @@ const getName = (ele: HTMLInputElement) => ele.name ?? ele.getAttribute('name')
 const getVal = (ele: HTMLInputElement) => ele.value ?? ele.getAttribute('value')
 /**
  * see if we can treat the event targe like a form control for data passing
- * <div au-trigger="click" name="foo" value="bar">Click</div>
+ * <div tf-trigger="click" name="foo" value="bar">Click</div>
  */
 export function tryAddEventTargetAsFormControl(controls, ele) {
   const name1 = getName(ele) ?? getVal(ele);
@@ -103,7 +103,7 @@ export function makeFormData(node: HTMLElement, ele: auElementType): FormData {
   const fd = new FormData()
   controls.forEach(ctrol => {
     if (fd.has(ctrol.name)) {
-      console.warn(`Developer, you may have a copy/paste error in your form or au-include tree. There is more than one form control with the name ${ctrol.name}`)
+      console.warn(`Developer, you may have a copy/paste error in your form or tf-include tree. There is more than one form control with the name ${ctrol.name}`)
     }
     fd.set(ctrol.name, ctrol.value)
   })

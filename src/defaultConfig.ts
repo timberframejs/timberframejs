@@ -17,8 +17,8 @@ export const defaultConfig = {
   serverPost:postJson,
   serverGet: getJson,
   defaultAttributes:{
-    'au-swap': swapOptions.outeHTML,
-    'au-trigger':triggerOptions.click,
+    'tf-swap': swapOptions.outeHTML,
+    'tf-trigger':triggerOptions.click,
   },
   auCed:{
     verb:'post'

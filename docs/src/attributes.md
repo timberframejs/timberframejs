@@ -1,13 +1,13 @@
 
 
-## au-target
+## tf-target
 - method: get or post
 - selector strategy
 - selector
 
 'get' passes any included data a attributes
 
-```  au-target="get closest div" ```
+```  tf-target="get closest div" ```
 
 ### Click counter example
 
@@ -25,10 +25,10 @@ export class ClickCounter extends HTMLElement {
     const frag = html`
       <input name='counter' value='${count}' />
       <button
-        au-trigger='click'
-        au-ced='${CLICK_COUNTER}'
-        au-include='closest ${CLICK_COUNTER}'
-        au-target='post closest ${CLICK_COUNTER}'>click me</button>
+        tf-trigger='click'
+        tf-ced='${CLICK_COUNTER}'
+        tf-include='closest ${CLICK_COUNTER}'
+        tf-target='post closest ${CLICK_COUNTER}'>click me</button>
     `
     this.append(frag)
   }

@@ -10,10 +10,10 @@ export class DialogGetExample extends HTMLDialogElement {
       <!-- multiple ways this could be done, but basic is to just
            re-render the dialog without the open attribute/querystring -->
       <button
-        au-ced="get dialog?is=${DIALOG_GET}"
-        au-target='closest dialog'
-        au-swap='${swapOptions.delete}'
-        au-trigger='click'
+        tf-ced="get dialog?is=${DIALOG_GET}"
+        tf-target='closest dialog'
+        tf-swap='${swapOptions.delete}'
+        tf-trigger='click'
       >Close</button>
     `
     this.append(frag)
@@ -27,10 +27,10 @@ export class DialogGetExample extends HTMLDialogElement {
 export const buttonOpenGetExample = createElement<HTMLButtonElement>({
   tagName:'button',
   attributes:{
-    'au-ced':`get dialog?is=${DIALOG_GET}&open`,
-    'au-target':`#dialog-placeholder`,
-    'au-swap': swapOptions.innerHTML,
-    'au-trigger':'click'
+    'tf-ced':`get dialog?is=${DIALOG_GET}&open`,
+    'tf-target':`#dialog-placeholder`,
+    'tf-swap': swapOptions.innerHTML,
+    'tf-trigger':'click'
   },
   properties:{
     textContent: 'open dialog attribute'

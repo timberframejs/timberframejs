@@ -48,9 +48,9 @@ describe('auCed POST', () => {
       const ele = createElement<PostTest>({
         tagName: POST_TEST,
         attributes: {
-          'au-trigger': 'input',
-          'au-target':`closest ${POST_TEST}`,
-          'au-ced': `post ${POST_TEST}`
+          'tf-trigger': 'input',
+          'tf-target':`closest ${POST_TEST}`,
+          'tf-ced': `post ${POST_TEST}`
         }
       })
       host.append(ele)

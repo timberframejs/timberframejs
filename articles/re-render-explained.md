@@ -109,9 +109,9 @@ defineElement('user-details', UserDetailsInfo)
 
 <form
   is="user-details"
-  au-post="user-details"
-  au-trigger="input"
-  au-target="user-details"
+  tf-post="user-details"
+  tf-trigger="input"
+  tf-target="user-details"
 ></form>
 <user-details></user-details>
 ```
@@ -148,9 +148,9 @@ export class UserDetailsForm extends HTMLFormElement{
 
 <form
   is="user-details"
-  au-post="user-details"
-  au-trigger="input"
-  au-target="user-details"
+  tf-post="user-details"
+  tf-trigger="input"
+  tf-target="user-details"
 ></form>
 ```
 

@@ -41,14 +41,14 @@ export class UserForm extends HTMLElement {
         </style>
         <h3>User Form</h3>
         <i>npm run serve-user-form</i>
-        <p>Of interest, this example uses au-server="post \${some url}"</p>
+        <p>Of interest, this example uses tf-server="post \${some url}"</p>
         <ul>
             <li>When user clicks submit</li>
             <li>converts the form to a FormData object</li>
             <li>converts the FormData to json object</li>
             <li>makes a server side api call with the json object</li>
             <li>merges the server response with the original json object</li>
-            <li>creates the new custom element as defined by the au-ced post </li>
+            <li>creates the new custom element as defined by the tf-ced post </li>
             <li>binds the merged data object to new custom element</li>
             <li>the new element is added to the DOM</li>
             <li>the new elements connectedCallback is called and the component is rendered with the new data</li>
@@ -77,20 +77,20 @@ export class UserForm extends HTMLElement {
             id="submit_post"
             type="submit"
             value="submit"
-            au-trigger="click"
-            au-ced="post ${USER_FORM}"
-            au-include="closest ${USER_FORM}"
-            au-server="post ${apiUrl}"
-            au-target="closest ${USER_FORM}"
+            tf-trigger="click"
+            tf-ced="post ${USER_FORM}"
+            tf-include="closest ${USER_FORM}"
+            tf-server="post ${apiUrl}"
+            tf-target="closest ${USER_FORM}"
             >Submit POST</button>
           <button
             type="submit"
             value="submit"
-            au-trigger="click"
-            au-ced="post ${USER_FORM}"
-            au-include="closest ${USER_FORM}"
-            au-server="get ${apiUrl}"
-            au-target="closest ${USER_FORM}"
+            tf-trigger="click"
+            tf-ced="post ${USER_FORM}"
+            tf-include="closest ${USER_FORM}"
+            tf-server="get ${apiUrl}"
+            tf-target="closest ${USER_FORM}"
             >Submit GET</button>
           </div>
     `

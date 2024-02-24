@@ -53,7 +53,7 @@ function caretPosition(input) {
 
 /** useful where a form is re-rendering and we want to keep the focus. Ideally this wouldn't need to happen, but it's here. */
 export async function preserveFocus(plugin: pluginArgs, args) {
-  if (plugin.ele.getAttribute('au-preserve-focus') === null) { return undefined; }
+  if (plugin.ele.getAttribute('tf-preserve-focus') === null) { return undefined; }
   const triggerEle = plugin.e.target as HTMLInputElement
   const focusNameAttr = triggerEle.getAttribute('name')
   let focusEle = plugin.cedEle.querySelector<HTMLInputElement>(`:scope [name=${focusNameAttr}]`)

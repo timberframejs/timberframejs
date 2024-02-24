@@ -17,10 +17,10 @@ export class DialogPostExample extends HTMLDialogElement{
       <!-- multiple ways this could be done, but basic is to just
            re-render the dialog without the open attribute/querystring -->
       <button
-        au-ced="get dialog?is=${DIALOG_POST}"
-        au-target='closest dialog'
-        au-trigger='click'
-        au-swap='delete'
+        tf-ced="get dialog?is=${DIALOG_POST}"
+        tf-target='closest dialog'
+        tf-trigger='click'
+        tf-swap='delete'
       >Close</button>
     `
     this.append(frag)

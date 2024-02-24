@@ -13,7 +13,7 @@ These use querystring params to pass information around
 ## Enumeration types
 There is a discrete list of values that can be used.
 
-au-swap="innerHTML" or "outerHTML"
+tf-swap="innerHTML" or "outerHTML"
 
 ## verbs
 
@@ -26,18 +26,18 @@ This can be thought of as an enumeration type at the beginning of a selector or 
 - patch
 
 ## Variable
-au-host is a variable type. If functions as a placeholder for the host variable. 
+tf-host is a variable type. If functions as a placeholder for the host variable. 
 
 
 ## attributes list
 
-- au-ced verb + url
-- au-server verb + url
-- au-target verb + selector
-- au-include verb + selector
-- au-trigger enumeration
-- au-swap  enumeration
-- au-host variable
+- tf-ced verb + url
+- tf-server verb + url
+- tf-target verb + selector
+- tf-include verb + selector
+- tf-trigger enumeration
+- tf-swap  enumeration
+- tf-host variable
 
 ## shorthand
 

@@ -19,9 +19,9 @@ export class HomeView extends HTMLElement{
       <h3>User Details From Example: two components</h3>
       <form
         is="user-details-form"
-        au-ced="post user-details-info"
-        au-trigger="input"
-        au-target="user-details-info"
+        tf-ced="post user-details-info"
+        tf-trigger="input"
+        tf-target="user-details-info"
       ></form>
       <user-details-info></user-details-info>
     </section>
@@ -30,31 +30,31 @@ export class HomeView extends HTMLElement{
       <h3>User Details From Example: as a single component</h3>
       <form
         is="user-details-single"
-        au-ced="post this"
-        au-trigger="input"
-        au-preserve-focus
+        tf-ced="post this"
+        tf-trigger="input"
+        tf-preserve-focus
       ></form>
     </section>
 
     <section>
       <h3>Hello World: invoking a built-in custom element</h3>
       <div
-        au-ced='get div?is=hello-world-div&msg=Hello World'
-        au-target='next'
-        au-trigger='click'>Click Here</div>
+        tf-ced='get div?is=hello-world-div&msg=Hello World'
+        tf-target='next'
+        tf-trigger='click'>Click Here</div>
       <div></div>
     </section>
 
     <section>
       <h3>Hello Input: invoking a built-in custom element</h3>
-      <p><i>input name must match a parameter in the au-ced. </i></p>
+      <p><i>input name must match a parameter in the tf-ced. </i></p>
       <label> Enter a message </label>
       <input
         type='text'
         name='msg'
-        au-ced='get div?is=hello-world-div&msg=Hello World'
-        au-target='next'
-        au-trigger='input'/>
+        tf-ced='get div?is=hello-world-div&msg=Hello World'
+        tf-target='next'
+        tf-trigger='input'/>
       <div></div>
     </section>
 
@@ -64,9 +64,9 @@ export class HomeView extends HTMLElement{
       <input
         type='text'
         name='msg'
-        au-ced='post div?is=hello-world-div'
-        au-target='next'
-        au-trigger='input'/>
+        tf-ced='post div?is=hello-world-div'
+        tf-target='next'
+        tf-trigger='input'/>
       <div></div>
     </section>
     `

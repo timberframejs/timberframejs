@@ -36,10 +36,10 @@ export const addModelData = (all) => {
 }
 
 export function auCedPost(pia: pluginArgs) {
-  const { auMeta, ele, cedEle } = pia;
+  const { tfMeta, ele, cedEle } = pia;
   // not sure this is any different for get or post
-  if (!(auMeta.auCed.verb === 'post' && !isAuServer(auMeta))) { return }
-  const formDataEle = getIncludeElement(ele, auMeta) as auElementType
+  if (!(tfMeta.auCed.verb === 'post' && !isAuServer(tfMeta))) { return }
+  const formDataEle = getIncludeElement(ele, tfMeta) as auElementType
   // note: user gets to decide which format by what they put in
   //       their componet: body for form , model of json, or both body and model
   const fd = makeFormData(formDataEle, ele)
@@ -51,6 +51,6 @@ export function auCedPost(pia: pluginArgs) {
   addBodyData(all)
   addModelData(all)
   if (!hasBody && !hasModel) {
-    throw new Error(`Using attribute au-ced="post ..." without a property of body or model on the target component. Either add body or model to the component, or use get instead of post in the au-ced="get ${cedEle.tagName.toLowerCase()}"`)
+    throw new Error(`Using attribute tf-ced="post ..." without a property of body or model on the target component. Either add body or model to the component, or use get instead of post in the tf-ced="get ${cedEle.tagName.toLowerCase()}"`)
   }
 }

@@ -16,93 +16,93 @@ const pageLayout = html`
   <h1>Examples Scratchpad </h1>
   <nav>
     <button
-      au-hash="use au-ced"
-      au-ced='get div?is=hello-msg&msg=Hello World'
-      au-swap="innerHTML"
-      au-target="main"
-      au-view-transition
+      tf-hash="use tf-ced"
+      tf-ced='get div?is=hello-msg&msg=Hello World'
+      tf-swap="innerHTML"
+      tf-target="main"
+      tf-view-transition
       >Hello Message using get</button>
     <!-- todo this should still work and copy the query params over -->
     <button
-      au-hash="#div?is=hello-msg&msg=Hello"
-      au-ced="post div?is=hello-msg&msg=Hello"
-      au-swap="innerHTML"
-      au-target="main"
-      au-view-transition
+      tf-hash="#div?is=hello-msg&msg=Hello"
+      tf-ced="post div?is=hello-msg&msg=Hello"
+      tf-swap="innerHTML"
+      tf-target="main"
+      tf-view-transition
       > Hello Message post</button>
 
     <a 
       href="#click-counter"
-      au-trigger="click"
-      au-ced="post click-counter"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-trigger="click"
+      tf-ced="post click-counter"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >Click Counter</a>
 
       <a 
       href="#user-form"
-      au-trigger="click"
-      au-ced="post user-form"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-trigger="click"
+      tf-ced="post user-form"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >User Form</a>
 
       <a 
       href="#user-form"
-      au-trigger="click"
-      au-ced="post user-form"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-trigger="click"
+      tf-ced="post user-form"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >User Form</a>
       
       <!-- automatically adds trigger='click' from the default config -->
       <a
       href="#dialog-buttons"
-      au-ced="post dialog-buttons?open"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-ced="post dialog-buttons?open"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >Dialog Buttons</a>
 
     <a 
       href="#epatch-example"
-      au-ced="post epatch-example"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-ced="post epatch-example"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >Patch Example<a>
     <!-- this one is wrong I think href does not match the ced
     <a 
       href="#simple-store"
-      au-ced="epatch-example"
-      au-target="main"
-      au-swap="innerHTML"
+      tf-ced="epatch-example"
+      tf-target="main"
+      tf-swap="innerHTML"
       >Simple Store<a>
       -->
     
       <a 
       href="#element-generator"
-      au-ced="element-generator"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-ced="element-generator"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >AU Element Generator<a>
       <a 
       href="#auhost-example"
-      au-ced="get auhost-example"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
-      >au-host attribute<a>
+      tf-ced="get auhost-example"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
+      >tf-host attribute<a>
     <a 
       href="#timer-table"
-      au-ced="get timer-table"
-      au-target="main"
-      au-swap="innerHTML"
-      au-view-transition
+      tf-ced="get timer-table"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
       >Primeagen Timer</a>
   </nav>
   <main></main>

@@ -41,8 +41,8 @@ describe('auCedPatch', () => {
       const ele = createElement<PatchTest>({
         tagName: PATCH_TEST,
         attributes: {
-          'au-trigger': 'input',
-          'au-ced': 'patch include'
+          'tf-trigger': 'input',
+          'tf-ced': 'patch include'
         }
       })
 

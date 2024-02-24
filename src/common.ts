@@ -1,5 +1,5 @@
 export function isAuElement(ele: Element) {
-  return Array.from(ele.attributes).find(attr => attr?.name.startsWith('au-'))
+  return Array.from(ele.attributes).find(attr => attr?.name.startsWith('tf-'))
 }
 
 export function objectToQueryParams(obj) {

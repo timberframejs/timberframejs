@@ -51,9 +51,9 @@ export class PatchExample extends HTMLElement {
     return html`
       <h3>${this.model.favorite_color ?? ''} is your favorite color.</h3>
       <button
-        au-trigger="click"
-        au-target="closest ${PATCH_EXAMPLE}"
-        au-ced="get ${PATCH_EXAMPLE}"
+        tf-trigger="click"
+        tf-target="closest ${PATCH_EXAMPLE}"
+        tf-ced="get ${PATCH_EXAMPLE}"
         name="start_over"
       >Start Over</button>
     `
@@ -66,7 +66,7 @@ export class PatchExample extends HTMLElement {
             where we want to prevent unnecessary calls to the server just to look up the colors.
       </p>
       <p>An alternate approach would be to store the colors data in a store that is not destroyed on each re-render. And if the store is empty, then make the call to the serve. </p>
-      <p>What is happening is au-ced="patch" is short circuiting the workflow and just doing the form binding then calling connectedCallback.</p>
+      <p>What is happening is tf-ced="patch" is short circuiting the workflow and just doing the form binding then calling connectedCallback.</p>
       <div>
         The number should increase to prove we are not re-rendering the outer element on each change. The innerHTML is being re-rendered.
         <input name="counter" value="${
@@ -77,26 +77,26 @@ export class PatchExample extends HTMLElement {
         <label for="new_color">Add Color</label>
         <input name="new_color" />
         <button
-          au-include="closest ${PATCH_EXAMPLE}"
-          au-ced="patch include"
+          tf-include="closest ${PATCH_EXAMPLE}"
+          tf-ced="patch include"
           name="add"
-          au-target="closest ${PATCH_EXAMPLE}"
+          tf-target="closest ${PATCH_EXAMPLE}"
           >Add</button>
       </div>
       <div></div>
       <div>
         <select name="favorite_color"><select>
         <button
-          au-include="closest ${PATCH_EXAMPLE}"
-          au-ced="patch include"
+          tf-include="closest ${PATCH_EXAMPLE}"
+          tf-ced="patch include"
           name="submit"
-          au-target="closest ${PATCH_EXAMPLE}"
+          tf-target="closest ${PATCH_EXAMPLE}"
           >Submit</button>
         <button
-          au-include="closest ${PATCH_EXAMPLE}"
-          au-ced="patch include"
+          tf-include="closest ${PATCH_EXAMPLE}"
+          tf-ced="patch include"
           name="start_over"
-          au-target="closest ${PATCH_EXAMPLE}"
+          tf-target="closest ${PATCH_EXAMPLE}"
           >Start Over</button>
       </div>
     `

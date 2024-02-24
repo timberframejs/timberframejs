@@ -4,8 +4,8 @@ It is not recommended to re-render forms, but if you do this plug-in attempts to
 
 ```
 <div form-ish
-  au-preserve-focus 
-  au-trigger="input">
+  tf-preserve-focus 
+  tf-trigger="input">
   <input name="first_name" value="${this.model.first_name}"/>
 </div>
 

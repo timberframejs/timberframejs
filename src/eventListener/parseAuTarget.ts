@@ -1,32 +1,32 @@
 import { swapOptions, targetOptions } from "../auConstants.js";
-import { auMetaType, pluginArgs } from "../types.js";
+import { tfMetaType, pluginArgs } from "../types.js";
 
 /**
  * The issue with this is when it's discovered.
  * It is after the 
  */
-export function guessTheTargetSelector(ele, auMeta:auMetaType) {
+export function guessTheTargetSelector(ele, tfMeta:tfMetaType) {
   // potential foot gun, guess a target when null
-  if (auMeta.targetSelector === null) {
+  if (tfMeta.targetSelector === null) {
     // if no children search up the tree
     if (ele.children.length === 0) {
-      auMeta.targetSelector = `closest ${auMeta.ced.tagName}`
+      tfMeta.targetSelector = `closest ${tfMeta.ced.tagName}`
     } else {
-      auMeta.targetSelector = `document ${auMeta.ced.tagName}`
+      tfMeta.targetSelector = `document ${tfMeta.ced.tagName}`
     }
-    ele.setAttribute('au-target', auMeta.targetSelector)
-    auMeta.brains.push('au-target was empty so one was added for you.')
-    console.warn(`'guess the target selector' is being deprecated. Please correct your code. ${ele.tagName} ${auMeta.ced.tagName}`)
+    ele.setAttribute('tf-target', tfMeta.targetSelector)
+    tfMeta.brains.push('tf-target was empty so one was added for you.')
+    console.warn(`'guess the target selector' is being deprecated. Please correct your code. ${ele.tagName} ${tfMeta.ced.tagName}`)
   }
 }
 
 
 function validate(target:Element|null , cmd:string){
   if(!target){
-    console.warn(`A target could not be found with au-target="${cmd}" attempting to use document.querySelector`)
+    console.warn(`A target could not be found with tf-target="${cmd}" attempting to use document.querySelector`)
     target = document.querySelector(cmd.replace('document ', ''));
     if(target === null){
-      throw new Error(`Using document.querySelector did not work either for au-target="${cmd}"`);
+      throw new Error(`Using document.querySelector did not work either for tf-target="${cmd}"`);
     }
   }
 }
@@ -34,15 +34,15 @@ function validate(target:Element|null , cmd:string){
 /**
  * in relation to the element in which the event happened on
  * try to use same language for includes or target
- * au-target='div' document.querySelector('div')
- * au-target='next' // next sibbling
- * au-target='previous' // previous sibbling // but could just use parent
- * au-target='closest div' x.closest('div')
- * au-target='children div' //  x.querySelector(':scope div)
- * au-target='parent div' // x.parentElement.querySelector(':scope div')
- * au-target='parent2 div'
- * au-target='parent3 div'
- * au-target='parent4 div'
+ * tf-target='div' document.querySelector('div')
+ * tf-target='next' // next sibbling
+ * tf-target='previous' // previous sibbling // but could just use parent
+ * tf-target='closest div' x.closest('div')
+ * tf-target='children div' //  x.querySelector(':scope div)
+ * tf-target='parent div' // x.parentElement.querySelector(':scope div')
+ * tf-target='parent2 div'
+ * tf-target='parent3 div'
+ * tf-target='parent4 div'
  * 
  */
 export function getTargetEle(auElement: HTMLElement, cmd: string): HTMLElement {
@@ -93,9 +93,9 @@ export function getTargetEle(auElement: HTMLElement, cmd: string): HTMLElement {
 
 /** not sure this is idea, we might include it in the form but than might not mean it's the target to replace
 */
-export function getIncludeElement(ele: HTMLElement, auMeta: auMetaType) {
-  if (auMeta.auInclude?.length > 0) {
-    return getTargetEle(ele, auMeta.auInclude)
+export function getIncludeElement(ele: HTMLElement, tfMeta: tfMetaType) {
+  if (tfMeta.auInclude?.length > 0) {
+    return getTargetEle(ele, tfMeta.auInclude)
   }
   return ele
 }
@@ -104,7 +104,7 @@ export function replaceAuTarget(plugIn:pluginArgs){
 
   // need to play with this some more and get it working better
   let toDispose = new DocumentFragment();
-  switch (plugIn.auMeta.auSwap) {
+  switch (plugIn.tfMeta.auSwap) {
     case swapOptions.innerHTML:
       // could see if the inner has any auElements and remove the event listeners
       while (plugIn.targetEle.firstChild) {

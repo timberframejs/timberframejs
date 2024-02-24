@@ -3,7 +3,7 @@ import { CED } from "./utils/index.js"
 
 export type auSwapType = 'none' | 'innerHTML' | 'outerHTML' | 'delete'
 
-export type auMetaType = {
+export type tfMetaType = {
   trigger: string
   targetSelector: string | null
   server: string | null
@@ -24,20 +24,20 @@ type booleanAttribute = true | false // really it exists or does not exist as an
 
 // more to come, just the ones currently supported
 export type auAttributeTypes = {
-  'au-cmd'?: string
-  'au-trigger'?: string
-  'au-include'?: string
-  'au-swap'?: auSwapType
-  'au-href'?: string
-  'au-preserve-focus'?: booleanAttribute
-  'au-attach-swapped'?: booleanAttribute
-  'au-server'?: string
+  'tf-cmd'?: string
+  'tf-trigger'?: string
+  'tf-include'?: string
+  'tf-swap'?: auSwapType
+  'tf-href'?: string
+  'tf-preserve-focus'?: booleanAttribute
+  'tf-attach-swapped'?: booleanAttribute
+  'tf-server'?: string
 }
 
 export type auElementType = {
   auState: 'processed'
   auAbortController: AbortController
-  auMeta: auMetaType
+  tfMeta: tfMetaType
   body?: FormData
   model?: any
   attributes: auAttributeTypes
@@ -51,7 +51,7 @@ export type auElementType = {
 export type auCedEle = HTMLElement & {
   body?: unknown
   model?: unknown
-  auMeta?: auMetaType
+  tfMeta?: tfMetaType
   name?:string
   value?:string
 }
@@ -62,8 +62,8 @@ export type auConfigType = {
   serverPost: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
   serverGet: (url: string, plugIn: pluginArgs) => Promise<unknown>
   defaultAttributes: {
-    'au-swap': string
-    'au-trigger': string
+    'tf-swap': string
+    'tf-trigger': string
   }
   auCed: {
     verb: 'post' | 'get' | 'patch'
@@ -83,7 +83,7 @@ export type auConfigType = {
  */
 export type pluginArgs = {
   e: Event
-  auMeta: auMetaType
+  tfMeta: tfMetaType
   // todo: define what ele is, if we can
   ele: auElementType
   targetEle?: HTMLElement
@@ -95,7 +95,7 @@ export type eventSetupArgs = {
   // the element to setup listeners on
   ele: auElementType,
   // cmd: string,
-  initialMeta: Partial<auMetaType>,
+  initialMeta: Partial<tfMetaType>,
   auConfig: auConfigType
 }
 

@@ -24,42 +24,42 @@ export class ActiveNav extends HTMLElement {
       <ul>
         <li
           nid="hw1"
-          au-ced="get active-nav?active=hw1"
-          au-swap="outerHTML"
-          au-target="active-nav"
+          tf-ced="get active-nav?active=hw1"
+          tf-swap="outerHTML"
+          tf-target="active-nav"
         >
           <div
-            au-ced="get div?is=hello-msg&msg=Hello World"
-            au-swap="innerHTML"
-            au-target="main"
+            tf-ced="get div?is=hello-msg&msg=Hello World"
+            tf-swap="innerHTML"
+            tf-target="main"
           >
             Hello World
           </div>
         </li>
         <li
           nid="hw2"
-          au-ced="get active-nav?active=hw2"
-          au-swap="outerHTML"
-          au-target="active-nav"
+          tf-ced="get active-nav?active=hw2"
+          tf-swap="outerHTML"
+          tf-target="active-nav"
         >
           <div
-            au-ced="get div?is=hello-msg&msg=Hello Universe"
-            au-swap="innerHTML"
-            au-target="main"
+            tf-ced="get div?is=hello-msg&msg=Hello Universe"
+            tf-swap="innerHTML"
+            tf-target="main"
           >
             Hello Universe
           </div>
         </li>
         <li
           nid="hw3"
-          au-ced="get active-nav?active=hw3"
-          au-swap="outerHTML"
-          au-target="active-nav"
+          tf-ced="get active-nav?active=hw3"
+          tf-swap="outerHTML"
+          tf-target="active-nav"
         >
           <div
-            au-ced="get div?is=hello-msg&msg=Hello Mario World"
-            au-swap="innerHTML"
-            au-target="main"
+            tf-ced="get div?is=hello-msg&msg=Hello Mario World"
+            tf-swap="innerHTML"
+            tf-target="main"
           >
             Hello Mario
           </div>

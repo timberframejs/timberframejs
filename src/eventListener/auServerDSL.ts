@@ -1,6 +1,6 @@
 import { objectToQueryParams } from "../common.js"
 import { makeFormData } from "./auFormData.js"
-import { auCedEle, auMetaType, pluginArgs } from "../types.js"
+import { auCedEle, tfMetaType, pluginArgs } from "../types.js"
 import { getIncludeElement } from "../eventListener/parseAuTarget.js"
 
 //todo:need to test this function
@@ -9,9 +9,9 @@ function toFormData(o) {
   return Object.entries(o).reduce((d, e) => (d.append(...e), d), new FormData())
 }
 
-const errorMsg = (newEle: auCedEle) => { return `Developer, you are using the au-ced attribute without a property of body or model for component named ${newEle?.tagName}. Either add body or model to the component, or remove the post hint` }
+const errorMsg = (newEle: auCedEle) => { return `Developer, you are using the tf-ced attribute without a property of body or model for component named ${newEle?.tagName}. Either add body or model to the component, or remove the post hint` }
 
-export const isAuServer = (auMeta: auMetaType) => { return auMeta.server?.length > 0 }
+export const isAuServer = (tfMeta: tfMetaType) => { return tfMeta.server?.length > 0 }
 
 export const updateCedData = (model, json, plugIn: pluginArgs) => {
   // todo: what if the CED has a get attribute? we need to turn the form into querystring params
@@ -33,21 +33,21 @@ export const updateCedData = (model, json, plugIn: pluginArgs) => {
 }
 
 export const getModel = (plugIn: pluginArgs) => {
-  const formDataEle = getIncludeElement(plugIn.ele, plugIn.auMeta)
+  const formDataEle = getIncludeElement(plugIn.ele, plugIn.tfMeta)
   const fd = makeFormData(formDataEle, plugIn.ele)
   return Object.fromEntries(fd.entries())
 }
 
 /**
- * <div au-server="post ./users"
+ * <div tf-server="post ./users"
  * todo: the following are not implemented yet, might be nice
- * <div au-server="post ./users/${model.userid}"
- * <div au-server="post as json ./users"
- * <div au-server="post as formdata ./users"
+ * <div tf-server="post ./users/${model.userid}"
+ * <div tf-server="post as json ./users"
+ * <div tf-server="post as formdata ./users"
  */
 export async function attachServerRespToCedEle(plugIn: pluginArgs) {
-  if (!plugIn.auMeta.server) { return }
-  const [verb, url] = plugIn.auMeta.server.split(' ')
+  if (!plugIn.tfMeta.server) { return }
+  const [verb, url] = plugIn.tfMeta.server.split(' ')
 
   if (verb === 'post') {
     const model = getModel(plugIn)
@@ -58,7 +58,7 @@ export async function attachServerRespToCedEle(plugIn: pluginArgs) {
   }
 
   if (verb === 'get') {
-    //todo: add in any querystring params from the au-server attribute
+    //todo: add in any querystring params from the tf-server attribute
     const model = getModel(plugIn);
     const qs = objectToQueryParams(model);
     const urlWithQs = `${url}${qs}`;

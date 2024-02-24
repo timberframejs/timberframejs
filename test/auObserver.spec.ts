@@ -1,7 +1,7 @@
 import { defaultConfig } from "../src/defaultConfig.js"
-import { auMetaPrep, getAuMeta } from "../src/eventListener/auMeta.js"
+import { tfMetaPrep, gettfMeta } from "../src/eventListener/tfMeta.js"
 import { auObserver} from "../src/index.js"
-import { auElementType, auMetaType} from "../src/types.js"
+import { auElementType, tfMetaType} from "../src/types.js"
 import { CED, createElement, html } from "../src/index.js"
 
 
@@ -20,9 +20,9 @@ describe('auObserver',()=>{
       <input
       type='text'
       name='msg'
-      au-ced='div?is=hello-world-div'
-      au-target='next'
-      au-trigger='input'/>
+      tf-ced='div?is=hello-world-div'
+      tf-target='next'
+      tf-trigger='input'/>
     `
     const input = frag.querySelector<auElementType>(':scope input')
     host.append(frag)
@@ -36,55 +36,55 @@ describe('auObserver',()=>{
 
 })
 
-describe('getAuMeta',()=>{
+describe('gettfMeta',()=>{
   let inputEle:auElementType
-  let auMeta:auMetaType
+  let tfMeta:tfMetaType
   const inputCED = {
     tagName:'input',
     attributes:{
       type:'text',
       name:'msg',
-      'au-ced':'post div?is=hello-world-div',
-      'au-target':'next',
-      'au-trigger':'input',
+      'tf-ced':'post div?is=hello-world-div',
+      'tf-target':'next',
+      'tf-trigger':'input',
     }
   }as CED<HTMLInputElement>
 
   beforeAll(async ()=>{
     inputEle = createElement<auElementType>(inputCED)
-    const initialMeta = await auMetaPrep(inputEle, defaultConfig)
-    auMeta = await getAuMeta(inputEle, initialMeta, defaultConfig)
+    const initialMeta = await tfMetaPrep(inputEle, defaultConfig)
+    tfMeta = await gettfMeta(inputEle, initialMeta, defaultConfig)
   })
-  it('has au-ced',()=>{
+  it('has tf-ced',()=>{
     // @ts-ignore
-    expect(auMeta.auCed.raw).toBe(inputCED.attributes['au-ced'] as string)
+    expect(tfMeta.auCed.raw).toBe(inputCED.attributes['tf-ced'] as string)
   })
-  it('has au-target',()=>{
+  it('has tf-target',()=>{
     // @ts-ignore
-    expect(auMeta.targetSelector).toBe(inputCED.attributes['au-target'] as string)
+    expect(tfMeta.targetSelector).toBe(inputCED.attributes['tf-target'] as string)
   })
-  it('has au-trigger',()=>{
+  it('has tf-trigger',()=>{
     // @ts-ignore
-    expect(auMeta.trigger).toBe(inputCED.attributes['au-trigger'] as string)
+    expect(tfMeta.trigger).toBe(inputCED.attributes['tf-trigger'] as string)
   })
-  it('au-swap is null',()=>{
-    expect(auMeta.auSwap).toBe('outerHTML')
+  it('tf-swap is null',()=>{
+    expect(tfMeta.auSwap).toBe('outerHTML')
   })
-  it('auMeta au ced verb tobe post',()=>{
-    expect(auMeta.auCed.verb).toBe('post')
+  it('tfMeta au ced verb tobe post',()=>{
+    expect(tfMeta.auCed.verb).toBe('post')
   })
   it('searchParams tobe is=hello-world-div',()=>{
-    expect(auMeta.auCed.qs.get('is')).toBe('hello-world-div')
+    expect(tfMeta.auCed.qs.get('is')).toBe('hello-world-div')
   })
 
   it('auInclude is null',()=>{
-    expect(auMeta.auInclude).toBe(null)
+    expect(tfMeta.auInclude).toBe(null)
   })
   it('isThis tobe false',()=>{
-    expect(auMeta.isThis).toBe(false)
+    expect(tfMeta.isThis).toBe(false)
   })
   it('ced.tagName is input',()=>{
-    expect(auMeta.ced.tagName).toBe('div')
+    expect(tfMeta.ced.tagName).toBe('div')
   })
 
 })

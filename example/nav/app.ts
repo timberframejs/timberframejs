@@ -15,7 +15,7 @@ const layout = html`
     <p>Note: this solution is a POC and in this case, it is recommended to not use html-au and use a single event listener in the active-nav component.</p>
     <p>Important implementation note: Because we have two elements with click events, the other element must hug the inner element so the user cannot accidentally click on the outer element.
       The innermost element should set the size for the li element.
-      If needed for styling purposes, a new span under the li may be needed. Move the au-attributes to that span.
+      If needed for styling purposes, a new span under the li may be needed. Move the tf-attributes to that span.
     </p>
     </div>
   <div id="content">

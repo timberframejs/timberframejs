@@ -39,10 +39,10 @@ export class AuElementGenerator extends HTMLElement{
     const eles = ['div', 'button','span', 'form','input'];
     eles.forEach(name =>{
       const x = html`<button
-      au-host="closest element-generator"
-      au-target="host"
-      au-include="host"
-      au-ced="post element-generator?elementname=${name}"
+      tf-host="closest element-generator"
+      tf-target="host"
+      tf-include="host"
+      tf-ced="post element-generator?elementname=${name}"
       name="btn-set-ele-name"
       value="${name}"
       >${name}</button>`
@@ -53,10 +53,10 @@ export class AuElementGenerator extends HTMLElement{
   templateLitTryIt(){
     return html`
     <${this.model.elementname}
-    au-trigger="${this.model.eventname}"
-    au-target="${this.model.targetselector}"
-    au-ced="${this.model.cedname}"
-    au-swap="${this.model.swap}"
+    tf-trigger="${this.model.eventname}"
+    tf-target="${this.model.targetselector}"
+    tf-ced="${this.model.cedname}"
+    tf-swap="${this.model.swap}"
     > click
     </${this.model.elementname}>
     `
@@ -86,7 +86,7 @@ export class AuElementGenerator extends HTMLElement{
                 color: #333;
             }
 
-            div[au-ced]{
+            div[tf-ced]{
               display:table;
             }
     
@@ -139,12 +139,12 @@ export class AuElementGenerator extends HTMLElement{
 
         <div class="container">
             <h3>AU Element Generator</h3>
-            <p>There are more au-attributes than are demonstrated here such as au-include.</p>
+            <p>There are more tf-attributes than are demonstrated here such as tf-include.</p>
             <div
-              au-trigger="input"
-              au-target="closest element-generator"
-              au-ced="element-generator"
-              au-preserve-focus
+              tf-trigger="input"
+              tf-target="closest element-generator"
+              tf-ced="element-generator"
+              tf-preserve-focus
             >
                 <div class="form-group">
                     <label for="${this.elementnameid}">Element Name:</label>
@@ -181,20 +181,20 @@ export class AuElementGenerator extends HTMLElement{
                     <button
                       type="submit"
                       class="btn-submit"
-                      au-target="closest element-generator"
-                      au-ced="post element-generator"
-                      au-include="closest element-generator"
-                      au-preserve-focus
+                      tf-target="closest element-generator"
+                      tf-ced="post element-generator"
+                      tf-include="closest element-generator"
+                      tf-preserve-focus
                       >Submit</button>
                 </div>
                 <div class="form-group">
                   <label for="${this.outputid}">Output</label>
 <textarea id="${this.outputid}" rows="10">
 &lt;${this.model.elementname}
-  au-trigger="${this.model.eventname}"
-  au-target="${this.model.targetselector}"
-  au-ced="${this.model.cedname}"
-  au-swap="${this.model.swap}"
+  tf-trigger="${this.model.eventname}"
+  tf-target="${this.model.targetselector}"
+  tf-ced="${this.model.cedname}"
+  tf-swap="${this.model.swap}"
   &gt; Click Here
 &lt;/${this.model.elementname}&gt;
 </textarea>

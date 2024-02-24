@@ -4,7 +4,7 @@ import { getTargetEle, replaceAuTarget } from './parseAuTarget.js';
 import { auCedEle, auElementType, pluginArgs, workflowArgs } from '../types.js';
 import { createElement } from '../utils/index.js';
 import { attachServerRespToCedEle } from './auServerDSL.js';
-import { getAuMeta } from './auMeta.js';
+import { gettfMeta } from './tfMeta.js';
 import { auCedPatchWorkflow } from './auCedPatch.js';
 import { auCedPost } from './auCedPost.js';
 
@@ -28,18 +28,18 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
 export const mainWorkflow = async (wf: workflowArgs)=> {
   const { ele, initialMeta, auConfig, e } = wf
 
-  const auMeta = await getAuMeta(ele, initialMeta, auConfig)
+  const tfMeta = await gettfMeta(ele, initialMeta, auConfig)
 
   // patch has a totally different workflow, this could even move up one level
-  if (auMeta.auCed.raw.startsWith('patch')) {
-    auCedPatchWorkflow(wf, auMeta)
+  if (tfMeta.auCed.raw.startsWith('patch')) {
+    auCedPatchWorkflow(wf, tfMeta)
     return;
   }
-  const cedEle = createElement<auCedEle>(auMeta.ced)
+  const cedEle = createElement<auCedEle>(tfMeta.ced)
 
   const plugInArgs = {
     e,
-    auMeta,
+    tfMeta,
     ele,
     cedEle,
     auConfig
@@ -50,7 +50,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
 
   auCedPost(plugInArgs)
 
-  cedEle.auMeta = { ...auMeta } // add the metadata for debugging and other edge use cases like maybe they want to parse the au-post query params
+  cedEle.tfMeta = { ...tfMeta } // add the metadata for debugging and other edge use cases like maybe they want to parse the tf-post query params
   // the observer will decide if it needs to wire up as another auElement
   // todo: validate this is still necessary.
   _auObserver(cedEle, auConfig)
@@ -59,13 +59,13 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
   //       the target or targetEle is where we are going to insert the newEle created by CED into the DOM.
 
 
-  const target = getTargetEle(ele, auMeta.targetSelector)
+  const target = getTargetEle(ele, tfMeta.targetSelector)
   plugInArgs.targetEle = target
 
   let toDispose = new DocumentFragment()
-  // todo: add error message that au-view-transition is not compatible with preserve focusS
+  // todo: add error message that tf-view-transition is not compatible with preserve focusS
   // @ts-ignore
-  if(plugInArgs.ele.hasAttribute('au-view-transition') && document.startViewTransition){
+  if(plugInArgs.ele.hasAttribute('tf-view-transition') && document.startViewTransition){
      // @ts-ignore
     document.startViewTransition(()=>{
       toDispose = replaceAuTarget(plugInArgs)

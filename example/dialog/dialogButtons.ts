@@ -25,9 +25,9 @@ export class DialogButtons extends HTMLElement {
 
     // todo: could add template support to non-shadowdom au components, then no js will be needed
     const dialogBtn = dialog?.querySelector(':scope button')
-    dialogBtn?.setAttribute('au-ced', 'get dialog-buttons')
-    dialogBtn?.setAttribute('au-target', 'closest dialog-buttons')
-    dialogBtn?.setAttribute('au-swap','outerHTML')
+    dialogBtn?.setAttribute('tf-ced', 'get dialog-buttons')
+    dialogBtn?.setAttribute('tf-target', 'closest dialog-buttons')
+    dialogBtn?.setAttribute('tf-swap','outerHTML')
   }
   templateLit() {
     const disabled = this.isShow ? 'disabled':''
@@ -35,28 +35,28 @@ export class DialogButtons extends HTMLElement {
     <main>
       <!-- Example 1-->
       <button
-        au-ced="get dialog-buttons?open"
-        au-target="closest dialog-buttons"
-        au-trigger="click"
+        tf-ced="get dialog-buttons?open"
+        tf-target="closest dialog-buttons"
+        tf-trigger="click"
         ${disabled}
         >get open dialog attribute</button>
       <!-- Example 2-->
       <button
-        au-ced="post dialog-buttons"
-        au-target="closest dialog-buttons"
-        au-trigger="click"
+        tf-ced="post dialog-buttons"
+        tf-target="closest dialog-buttons"
+        tf-trigger="click"
         name="button_action"
         ${disabled}
         value="show">post dialog.show</button>
       <!-- Example 3-->
-      <!-- notice missing trigger attribute will use au-ced post --> 
+      <!-- notice missing trigger attribute will use tf-ced post --> 
       <button
-        au-ced="post dialog-buttons"
-        au-trigger="click"
+        tf-ced="post dialog-buttons"
+        tf-trigger="click"
         name="button_action"
         ${disabled}
         value="showModal"
-        au-target="closest dialog-buttons"
+        tf-target="closest dialog-buttons"
         >post dialog.showModal</button>
 
         <div id='dialog-placeholder-2'>

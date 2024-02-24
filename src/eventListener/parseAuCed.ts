@@ -5,8 +5,8 @@ export function parseAuCed(raw:string, auConfig:auConfigType, ele){
   // Check if the raw string contains a ' ' character to split verb and tagName
   if(!raw){
     // note: this could be an input attribute where a form is listening for input or change
-    // console.warn('No au-ced attribute to parse')
-    throw new Error(`au-ced attribute cannot be empty on ele ${ele.tagName}`)
+    // console.warn('No tf-ced attribute to parse')
+    throw new Error(`tf-ced attribute cannot be empty on ele ${ele.tagName}`)
   }
 
   if(raw.startsWith('patch')){

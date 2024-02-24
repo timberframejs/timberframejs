@@ -40,7 +40,7 @@ const getNewItem =(model:timerData)=>{
   }
 }
 
-// all this store work could be replaced with server side and using au-server=""
+// all this store work could be replaced with server side and using tf-server=""
 export class TimeDataSvc {
   times: timerData[];
   constructor(){

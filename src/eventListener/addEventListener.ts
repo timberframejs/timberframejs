@@ -1,7 +1,7 @@
 import { triggerOptions } from "../auConstants.js";
 import { mainWorkflow } from "./workflow.js";
 import { auConfigType, auElementType, eventSetupArgs, workflowArgs } from "../types.js";
-import { auMetaPrep } from "./auMeta.js";
+import { tfMetaPrep } from "./tfMeta.js";
 
 const triggerKeys = Object.values(triggerOptions)
 
@@ -26,7 +26,7 @@ export async function eventListenerBuilder(ele: auElementType, auConfig:auConfig
   if (ele.auState === 'processed') { return; }
   ele.auState = 'processed'
 
-  const initialMeta = await auMetaPrep(ele, auConfig);
+  const initialMeta = await tfMetaPrep(ele, auConfig);
   const eventSetupArgs = {
     ele,
     auConfig,

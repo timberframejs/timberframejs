@@ -11,7 +11,7 @@ export class AuHostExample extends HTMLElement{
   templateLit(){
     return html`
       <style>
-        .au-host{
+        .tf-host{
           max-width: 800px;
           margin: 0 auto;
           background-color: #fff;
@@ -29,10 +29,10 @@ export class AuHostExample extends HTMLElement{
             padding-bottom:10px;
         }
       </style>
-      <div class="au-host">
-        <h3>AU-HOST example</h3>
-        <p>au-host is to help prevent syntax errors and simplify the selector of a host or parent element</p>
-        <p>A preflight plug-in that replaces certain attributes with the value of host with the value in the au-host attribute.
+      <div class="tf-host">
+        <h3>tf-HOST example</h3>
+        <p>tf-host is to help prevent syntax errors and simplify the selector of a host or parent element</p>
+        <p>A preflight plug-in that replaces certain attributes with the value of host with the value in the tf-host attribute.
 
         </p>
 
@@ -41,10 +41,10 @@ export class AuHostExample extends HTMLElement{
             <input/>
             <input/>
             <button
-              au-host="closest form"
-              au-include="host"
-              au-target="host"
-              au-ced="post form">click</button>
+              tf-host="closest form"
+              tf-include="host"
+              tf-target="host"
+              tf-ced="post form">click</button>
           </form>
         </textarea>
         <h4>Becomes</h4>
@@ -53,10 +53,10 @@ export class AuHostExample extends HTMLElement{
           <input/>
           <input/>
           <button
-            au-host="closest form"
-            au-include="closest form"
-            au-target="closest form"
-            au-ced="post form">click</button>
+            tf-host="closest form"
+            tf-include="closest form"
+            tf-target="closest form"
+            tf-ced="post form">click</button>
         </form>
       </textarea>
 
@@ -64,10 +64,10 @@ export class AuHostExample extends HTMLElement{
           <input name="test1" value="${this.model?.test1}"/>
           <input type="number" name="counter" value="${this.model?.counter}"/>
           <button
-            au-host="closest ${AUHOST_EXAMPLE}"
-            au-include="host"
-            au-target="host"
-            au-ced="post ${AUHOST_EXAMPLE}">click</button>
+            tf-host="closest ${AUHOST_EXAMPLE}"
+            tf-include="host"
+            tf-target="host"
+            tf-ced="post ${AUHOST_EXAMPLE}">click</button>
       </div>
     </div>
     `

@@ -55,11 +55,11 @@ Nothing special for debugging when using html-au.
 
 1. look in the console. An effort has been made to export helpful errors.
 
-2. look at the attributes on the live rendered element. In some cases attributes can be ommitted, in these cases, the attribute is added for to the element for easier debugging. When assumptions are made, the assumption decision is available in ele.auMeta.brains string array.
+2. look at the attributes on the live rendered element. In some cases attributes can be ommitted, in these cases, the attribute is added for to the element for easier debugging. When assumptions are made, the assumption decision is available in ele.tfMeta.brains string array.
 
 3. Feature overlap between the attributes can be an issue. I'll work on a writing a debugging tree for this. But understanig each attribute is important. Currently there are around five attributes. Trying to keep the attribute limit under 10.
 
-4. Debugging html-au should be faily straight forward if you understand event listeners. Html-au is just converting attributes to an event listener. Discovering au-attributes is an MutationObserver Most of the time the issue is in the mainWorkflow function. Or start right from the auObserver. Preflight plug-ins might be the next common bug area.
+4. Debugging html-au should be faily straight forward if you understand event listeners. Html-au is just converting attributes to an event listener. Discovering tf-attributes is an MutationObserver Most of the time the issue is in the mainWorkflow function. Or start right from the auObserver. Preflight plug-ins might be the next common bug area.
 
 
 ## html backticks
@@ -105,7 +105,7 @@ Do not have to use Typescript in html-au. Types are there if you want them.
 
 In a way htmx and html-au act like a router. An element click can put an htmlfragment anywhere on the DOM. 
 
-Can use anchor tags as the element to update the url hash. Don't want to use anchor tags, use the ```au-href``` plug in to make any element act like an anchor tag.
+Can use anchor tags as the element to update the url hash. Don't want to use anchor tags, use the ```tf-href``` plug in to make any element act like an anchor tag.
 
 Don't want to deep dive on this now. But can, put an issue on github and I will.
 

@@ -22,11 +22,11 @@ export class PostTest extends HTMLElement {
       <input type="text" name="sound" value="${this.body?.get('sound')?.toString() ?? ''}"/>
       <input type="number" name="counter" value="${(previousCounter + 1).toString()}" />
       <button
-        au-trigger="click"
-        au-host="closest ${POST_TEST}"
-        au-include="host"
-        au-ced="post ${POST_TEST}"
-        au-target="host">click</button>
+        tf-trigger="click"
+        tf-host="closest ${POST_TEST}"
+        tf-include="host"
+        tf-ced="post ${POST_TEST}"
+        tf-target="host">click</button>
     `
     this.replaceChildren()
     this.append(frag);
