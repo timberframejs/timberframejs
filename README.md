@@ -150,10 +150,9 @@ export class ClickCounter extends HTMLElement {
 * stability - always strive for backward compatibility - we reserve the right to make breaking changes in cases of security issues.
 * developer experience - balance helpful feedback and runtime performance. 
 * admire [PEP 20](https://peps.python.org/pep-0020/) especially the preferrably one way to do it.
-* configurable defaults
-* select few default attributes will be added at runtime for visibility. (a small relaxing of explicit over implicit to balance against developer experience.)
+* select few configurable defaults
+* default attributes will be added at runtime for visibility. (a small relaxing of explicit over implicit to balance against developer experience.)
 * plug-in architecture
-* attempt to discover and throw potential attribute errors at pageload vs. after the event has happened.
-* unit testing
-* 
+* attempt to discover and throw potential attribute errors before the event is triggered.
+* testing - unit and integration
   
