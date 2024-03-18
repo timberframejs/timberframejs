@@ -14,6 +14,15 @@ The goal of TimberFrameJs
 
 TimberFrameJs is not meant to solve every problem. It is a simple starting point for custom elements. If more complexity is needed, then fall back to wiring up events in your custom element.
 
+## How does it work
+Mutation Observer that watches for 'tf-' attributes and adds an eventlistener to the element. The event listener uses various methods to pass data to other components, and optionally can make a pitstop to call an api. Data is merged and passed to the next component. The TimberframeJs rendering and re-render strategy favors rendering/re-rendering whole components. In contrast Vue, React, Angular favor micro updates by diffing a virtual DOM against the DOM and uptading only very small pieces of the DOM. It is our experience that re-rendering whole components is often faster than the traditional virtual DOM diffing strategy.
+
+## HTMX
+The high level difference between HTMX and TimberframeJs is where template work is done. In Timberframe the 'template' work is done in JavaScript using custom elements and template literals. In HTMX the templating is done on the server. (Server side templating languages are usually more robust than template literals. But they almost always require some extra JavaScript work that is bolted onto the page.)
+
+## Tips
+* Install a template literal syntax highlighter in your IDE. This will turn template literal strings into formatted html. 
+* Sanitize your template literals. DOM Purify is recommened. Or you can roll your own similar to the one used in the examples.
 
 
 ``` html
@@ -155,4 +164,5 @@ export class ClickCounter extends HTMLElement {
 * plug-in architecture
 * attempt to discover and throw potential attribute errors before the event is triggered.
 * testing - unit and integration
+* low/no intrusion into custom elements. Custom elements only have to know about their data model.  
   
