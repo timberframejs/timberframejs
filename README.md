@@ -167,5 +167,6 @@ export class ClickCounter extends HTMLElement {
 * plug-in architecture
 * attempt to discover and throw potential attribute errors before the event is triggered.
 * testing - unit and integration
-* low/no intrusion into custom elements. Custom elements only have to know about their data model.  
+* low/no intrusion into custom elements. Custom elements only have to know about their data model.
+* New features must have a valid use case.
   
