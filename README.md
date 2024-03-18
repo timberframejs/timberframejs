@@ -26,6 +26,7 @@ The high level difference between HTMX and TimberframeJs is where template work 
 * Install a template literal syntax highlighter in your IDE. This will turn template literal strings into formatted html. 
 * Sanitize your template literals. DOM Purify is recommened. Or you can roll your own similar to the one used in the examples.
 
+## Examples
 
 ``` html
   <button 
