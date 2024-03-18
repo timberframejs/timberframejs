@@ -133,3 +133,27 @@ export class ClickCounter extends HTMLElement {
   }
 }
 ```
+
+
+## Details
+
+* primarily a mutation observer that creates events.
+* form binding for all elements, not just forms
+* Can make api calls 
+* no virtual DOM
+* leverages custom elements
+* the goal is to leverage web standards as much as possible
+
+## Values
+
+* simplicity
+* stability - always strive for backward compatibility - we reserve the right to make breaking changes in cases of security issues.
+* developer experience - balance helpful feedback and runtime performance. 
+* admire [PEP 20](https://peps.python.org/pep-0020/) especially the preferrably one way to do it.
+* configurable defaults
+* select few default attributes will be added at runtime for visibility. (a small relaxing of explicit over implicit to balance against developer experience.)
+* plug-in architecture
+* attempt to discover and throw potential attribute errors at pageload vs. after the event has happened.
+* unit testing
+* 
+  
