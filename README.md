@@ -15,7 +15,9 @@ The goal of TimberFrameJs
 TimberFrameJs is not meant to solve every problem. It is a simple starting point for custom elements. If more complexity is needed, then fall back to wiring up events in your custom element.
 
 ## How it works
-Inside TimberframeJs, a Mutation Observer watches for 'tf-' attributes and adds an eventlistener to the element. The event listener uses various methods to pass data to other components, and optionally can make a pitstop to call a server side api . TimberframeJs merges data and passes it to the next component/configured component. The TimberframeJs rendering and re-render strategy favors rendering/re-rendering whole components. In contrast Vue, React, Angular favor micro updates by diffing a virtual DOM against the DOM and uptading only very small pieces of the DOM. It is our experience that re-rendering whole components is often faster than the traditional virtual DOM diffing strategy.
+Inside TimberframeJs, a Mutation Observer watches for 'tf-' attributes and adds an eventlistener to the element. The event listener uses various methods to pass data to other components, and optionally can make a pitstop to call a server side api . TimberframeJs merges data and passes it to the next component/configured component.
+
+Rendering Strategy: The TimberframeJs rendering and re-render strategy favors rendering/re-rendering whole components. In contrast Vue, React, Angular favor micro updates by diffing a virtual DOM against the DOM and uptading only very small pieces of the DOM. It is our experience that re-rendering whole components is often faster than the traditional virtual DOM diffing strategy.
 
 ## HTMX
 The high level difference between HTMX and TimberframeJs is where template work is done. In Timberframe the 'template' work is done in JavaScript using custom elements and template literals. In HTMX the templating is done on the server. (Server side templating languages are usually more robust than template literals. But they almost always require some extra JavaScript work that is bolted onto the page.)
