@@ -173,30 +173,35 @@ export class ClickCounter extends HTMLElement {
 
 ## Common Workflows
 
-General Pattern
+### General Pattern
 
 - event happens
 - create element
 - place element on page
 
+### Basic click
 - click
 - create new element
 - place element on page
 
+### Click Include Data
 - click
 - include data from page
 - create new element
 - place element on page with new data passed to it.
 
+### Click Call API 
 - click
 - include data from page
 - send data to server
 - create new element
 - place element on page with both page and server data passed to it
 
+### ReRender self
 - input or change element
 - re-render changed component
 
+## ReRender Form - Validation
 - input or change element
 - render parent component
 
