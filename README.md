@@ -169,4 +169,34 @@ export class ClickCounter extends HTMLElement {
 * testing - unit and integration
 * low/no intrusion into custom elements. Custom elements only have to know about their data model.
 * New features must have a valid use case.
-  
+
+
+## Common Workflows
+
+General Pattern
+* event happens
+* create element
+* place element on page
+
+* click
+* create new element
+* place element on page
+
+* click
+* include data from page
+* create new element
+* place element on page with new data passed to it.
+
+* click
+* include data from page
+* send data to server
+* create new element
+* place element on page with both page and server data passed to it
+
+* input or change element
+* re-render changed component
+
+* input or change element
+* render parent component
+
+
