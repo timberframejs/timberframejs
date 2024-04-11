@@ -61,6 +61,8 @@ export type tfConfigType = {
   workflow?: (wf: workflowArgs) => Promise<pluginArgs>
   serverPost: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
   serverGet: (url: string, plugIn: pluginArgs) => Promise<unknown>
+  serverDelete: (url: string, plugIn: pluginArgs) => Promise<unknown>
+  serverPut: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
   defaultAttributes: {
     'tf-swap': string
     'tf-trigger': string
