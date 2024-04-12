@@ -16,8 +16,9 @@ export async function basicEventListener(eventSetup: eventSetupArgs) {
       // easier tracing and debugging, but allows for overriding
       mainWorkflow(eventSetup as workflowArgs)
     }
-    
   }, { signal: eventSetup.ele.auAbortController.signal })
+  
+  eventSetup.ele.dispatchEvent(new CustomEvent("tf-done"))
 }
 
 

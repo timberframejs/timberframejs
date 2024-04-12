@@ -1,6 +1,7 @@
 import {CED, auObserver, createElement, defineElement, html, defaultConfig} from '../src/index.js';
 import './basic/clickCounter.js'
 import './user-form/index.js'
+import './manual-event/index.js'
 import './dialog/dialogButtons.js'
 import { HelloWorldDiv } from './basic/helloWorld.js';
 import './patch/patch.js';
@@ -50,13 +51,13 @@ const pageLayout = html`
       >User Form</a>
 
       <a 
-      href="#user-form"
+      href="#event-form"
       tf-trigger="click"
-      tf-ced="post user-form"
+      tf-ced="post event-form"
       tf-target="main"
       tf-swap="innerHTML"
       tf-view-transition
-      >User Form</a>
+      >Manual Events</a>
       
       <!-- automatically adds trigger='click' from the default config -->
       <a
@@ -106,6 +107,7 @@ const pageLayout = html`
       >Primeagen Timer</a>
   </nav>
   <main></main>
+  <div id="secondary"></div>
 `
 
 // nothing to do with html-au, just a development time saver: loads the last component on page refresh

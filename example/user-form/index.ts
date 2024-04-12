@@ -1,4 +1,7 @@
-import { auObserver, defineElement, html } from "../../src";
+import { auObserver, defineElement, html, defaultConfig } from "../../src";
+import { parseTfCed } from '../../src/eventListener/parseTfCed';
+import { mainWorkflow, executeRawWorkflow } from "../../src/eventListener/workflow";
+import { tfSwapType } from '../../dist/js/types';
 
 const USER_FORM = 'user-form'
 const apiUrl =  'http://127.0.0.1:8081/user'
@@ -10,6 +13,8 @@ export class UserForm extends HTMLElement {
   // auPost data added here
   model
   async connectedCallback() {
+
+   
     if (this.model === undefined) {
       // business data concern
       this.model = {
@@ -22,6 +27,7 @@ export class UserForm extends HTMLElement {
     }
     const model = this.model
     model.counter = (Number(model.counter?? 0) + 1).toString()
+
     // inline style is a bad idea. Need to do this differently. Started as shadowdom 
     const frag = html`
         <style>
@@ -95,6 +101,11 @@ export class UserForm extends HTMLElement {
           </div>
     `
     this.append(frag)
+
+    const button = this.querySelector<HTMLButtonElement>(":scope #submit_post");
+    button?.addEventListener('tf-done', e => {
+      console.log('submit post is done building');
+    });
   }
 }
 

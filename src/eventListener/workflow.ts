@@ -1,12 +1,14 @@
 import { _tfObserver } from '../tfObserver.js';
 import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
-import { tfCedEle, tfElementType, pluginArgs, workflowArgs } from '../types.js';
-import { createElement } from '../utils/index.js';
+import { parseTfCed } from '../../src/eventListener/parseTfCed';
+import { tfCedEle, tfElementType, pluginArgs, workflowArgs, tfConfigType } from '../types.js';
+import { createElement,  } from '../utils/index.js';
 import { attachServerRespToCedEle } from './tfServerDSL.js';
 import { gettfMeta } from './tfMeta.js';
 import { tfCedPatchWorkflow } from './tfCedPatch.js';
 import { tfCedPost } from './tfCedPost.js';
+import { defaultConfig } from '../defaultConfig';
 
 /**
  * destroy the old event listener so we don't degrade performance
@@ -80,4 +82,63 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
 
   // todo: explore destroying other objects that are no longer needed
   return plugInArgs;
+}
+
+export class executeRawWorkflowArgs {
+  ced: string;
+  targetSelector: string;
+  fromElement?: HTMLElement;
+  server?: string;
+  swap?: string;
+  include?: string;
+  config?: tfConfigType;
+}
+export const executeRawWorkflow = async (args: executeRawWorkflowArgs)=> {
+
+  const config = args.config || defaultConfig;
+  const ele = args.fromElement || document.querySelector('body');
+  const initialMeta = {
+    targetSelector : args.targetSelector,
+    server: args.server,
+    tfSwap: args.swap,
+    tfCed: parseTfCed(args.ced, config, undefined),
+    tfInclude: args.include
+  };
+  const tfConfig = config;
+  const wf = {ele, initialMeta, tfConfig, e: undefined}
+  
+  const tfMeta = initialMeta;
+  if (initialMeta.tfCed.raw.startsWith('patch')) {
+    tfCedPatchWorkflow(wf as any, tfMeta as any)
+    return;
+  }
+
+  const cedEle = createElement<tfCedEle>(tfMeta.tfCed)
+
+  const plugInArgs = {
+    tfMeta,
+    ele,
+    cedEle,
+    tfConfig: tfConfig,
+    targetEle: null
+  }
+
+  // attachServerResp is mutually exclusive against update the component with form data
+  await attachServerRespToCedEle(plugInArgs as any)
+
+  tfCedPost(plugInArgs as any)
+
+  cedEle.tfMeta = { ...tfMeta } as any // add the metadata for debugging and other edge use cases like maybe they want to parse the tf-post query params
+  // the observer will decide if it needs to wire up as another auElement
+  // todo: validate this is still necessary.
+  _tfObserver(cedEle, tfConfig)
+
+  const target = getTargetEle(ele, tfMeta.targetSelector)
+  plugInArgs.targetEle = target
+
+  let toDispose = new DocumentFragment()
+  toDispose = replaceAuTarget(plugInArgs as any)
+
+  wf.tfConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs as any, pi.endEventCallback.args))
+  removeOldEventListeners(toDispose)
 }
