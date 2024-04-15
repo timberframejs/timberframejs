@@ -1,7 +1,4 @@
-import { auObserver, defineElement, html, defaultConfig } from "../../src";
-import { parseTfCed } from '../../src/eventListener/parseTfCed';
-import { mainWorkflow, executeRawWorkflow } from "../../src/eventListener/workflow";
-import { tfSwapType } from '../../dist/js/types';
+import { defineElement, html } from "../../src";
 
 const USER_FORM = 'user-form'
 const apiUrl =  'http://127.0.0.1:8081/user'
@@ -101,11 +98,6 @@ export class UserForm extends HTMLElement {
           </div>
     `
     this.append(frag)
-
-    const button = this.querySelector<HTMLButtonElement>(":scope #submit_post");
-    button?.addEventListener('tf-done', e => {
-      console.log('submit post is done building');
-    });
   }
 }
 

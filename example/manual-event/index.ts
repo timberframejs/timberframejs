@@ -1,7 +1,5 @@
-import { auObserver, defineElement, html, defaultConfig } from "../../src";
-import { parseTfCed } from '../../src/eventListener/parseTfCed';
-import { mainWorkflow, executeRawWorkflow } from "../../src/eventListener/workflow";
-import { tfSwapType } from '../../dist/js/types';
+import { defineElement, html } from "../../src";
+import { executeRawWorkflow } from "../../src/eventListener/workflow";
 
 const EVENT_FORM = 'event-form';
 const EVENT_VIEW = 'event-view';
@@ -12,7 +10,6 @@ export class EventForm extends HTMLElement {
    ticker
    async connectedCallback() {
       if (this.model === undefined) {
-        // business data concern
         this.model = {
           make: '',
           model: '',
@@ -40,11 +37,11 @@ export class EventForm extends HTMLElement {
         </div>
         <div>
           <label for="lastOwner.firstname"> Previous Owner First Name</label>
-          <input id="lastOwner.firstname" type="text" name="lastOwner.firstname" value="${this.model.lastOwner.firstname}"/>
+          <input id="lastOwner.firstname" type="text" name="lastOwner.firstname" value="${this.model.lastOwner?.firstname}"/>
         </div>
         <div>
          <label for="lastOwner.lastname"> Previous Owner Last Name </label>
-         <input id="lastOwner.lastname" type="text" name="lastOwner.lastname" value="${this.model.lastOwner.lastname}"/>
+         <input id="lastOwner.lastname" type="text" name="lastOwner.lastname" value="${this.model.lastOwner?.lastname}"/>
          </div>
          <button
             type="submit"
@@ -77,6 +74,12 @@ export class EventForm extends HTMLElement {
 
    async disconnectedCallback() {
       window.clearInterval(this.ticker);
+      executeRawWorkflow({
+         fromElement: this,
+         ced:`get ${EVENT_VIEW}`,
+         targetSelector: `${EVENT_VIEW}`,
+         swap: 'delete'
+       });
    }
 }
 
@@ -85,10 +88,17 @@ export class EventView extends HTMLElement {
    model
    async connectedCallback() {
       if (this.model === undefined) {
-        // business data concern
-        this.model = {
-          
-        }
+        if (this.model === undefined) {
+         this.model = {
+           make: '',
+           model: '',
+           year: '',
+           lastOwner: {
+             firstname: '',
+             lastname: '',
+           }
+         }
+       }
       }
       let frag = html`<div>
          <h3>Live view from interval</h3>
@@ -118,7 +128,7 @@ export class EventView extends HTMLElement {
    }
 
    async disconnectedCallback() {
-
+      
    }
 }
 
