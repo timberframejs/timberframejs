@@ -1,4 +1,5 @@
-import { getSelects } from "../src/eventListener/tfFormData.js";
+import { html } from "../src/index.js"
+import { getSelects, makeComplexData } from "../src/eventListener/tfFormData.js";
 
 
 describe('getSelects Function', () => {
@@ -79,4 +80,91 @@ describe('getSelects Function', () => {
   });
 
   // Add more test cases as needed to cover different scenarios
+});
+
+
+describe('makeComplexData Function', () => {
+  let hostElement: HTMLElement;
+  beforeEach(() => {
+    hostElement = document.createElement('div');
+  });
+
+ 
+  it('should return flat object with generic form', () => {
+    hostElement.append(html`
+      <input type="text" name="first" value="" />
+      <input type="text" name="last" value="" />
+      <textarea name="details">my text data</textarea>
+      `)
+
+    let formObject = makeComplexData(hostElement, null);
+
+    let expected = {first: "", last: "", details: "my text data"};
+    expect(expected).toEqual(formObject as any);
+  });
+
+  it('should return flat object with select in body', () => {
+    hostElement.append(html`
+      <input type="text" name="first" value="" />
+      <input type="text" name="last" value="" />
+      <select name="ageGroup">
+        <option value="test0">Option A</option>
+        <option selected="selected" value="test1">Option B</option>
+      </select>
+      `)
+
+    let formObject = makeComplexData(hostElement, null);
+    let expected = {first: "", last: "", ageGroup:"test1", ageGroup_text:"Option B"};
+    expect(expected).toEqual(formObject as any);
+  });
+
+  it('should return nested object with generic form', () => {
+    hostElement.append(html`
+      <input type="text" name="first" value="" />
+      <input type="text" name="last" value="" />
+      <input type="text" name="animal.name" value="sparky" />
+      <input type="text" name="my.nested.alot" value="myValue" />
+      <input type="text" name="animal.legs" value="4" />
+      `)
+
+    let formObject = makeComplexData(hostElement, null);
+    let expected = {first: "", last: "", animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue"}}};
+    expect(expected).toEqual(formObject as any);
+  });
+
+  it('should return nested object inlcuding an array with generic form', () => {
+    hostElement.append(html`
+      <input type="text" name="first" value="" />
+      <input type="text" name="last" value="" />
+      <input type="text" name="animal.name" value="sparky" />
+      <input type="text" name="animal.legs" value="4" />
+      <input type="text" name="my.nested.alot" value="myValue" />
+      <input type="text" name="food[]" value="apple" />
+      <input type="text" name="food[]" value="banana" />
+      `)
+
+    let formObject = makeComplexData(hostElement, null);
+    let expected = {first: "", last: "", food:["apple", "banana"], animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue"}}};
+    expect(expected).toEqual(formObject as any);
+  });
+
+  it('should return nested object inlcuding an array in a nested objectwith generic form', () => {
+    hostElement.append(html`
+      <input type="text" name="first" value="" />
+      <input type="text" name="last" value="" />
+      <input type="text" name="animal.name" value="sparky" />
+      <input type="text" name="animal.legs" value="4" />
+      <input type="text" name="my.nested.alot" value="myValue" />
+      <input type="text" name="my.nested.shoe[]" value="nike" />
+      <input type="text" name="my.nested.shoe[]" value="adidas" />
+      <input type="text" name="food[]" value="apple" />
+      <input type="text" name="food[]" value="banana" />
+      `)
+
+    let formObject = makeComplexData(hostElement, null);
+    let expected = {first: "", last: "", food:["apple", "banana"], animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue", shoe: ["nike", "adidas"]}}};
+    expect(formObject as any).toEqual(expected);
+  });
+
+
 });
