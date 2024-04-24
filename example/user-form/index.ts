@@ -1,4 +1,4 @@
-import { auObserver, defineElement, html } from "../../src";
+import { defineElement, html } from "../../src";
 
 const USER_FORM = 'user-form'
 const apiUrl =  'http://127.0.0.1:8081/user'
@@ -10,6 +10,8 @@ export class UserForm extends HTMLElement {
   // auPost data added here
   model
   async connectedCallback() {
+
+   
     if (this.model === undefined) {
       // business data concern
       this.model = {
@@ -22,6 +24,7 @@ export class UserForm extends HTMLElement {
     }
     const model = this.model
     model.counter = (Number(model.counter?? 0) + 1).toString()
+
     // inline style is a bad idea. Need to do this differently. Started as shadowdom 
     const frag = html`
         <style>
