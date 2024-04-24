@@ -53,20 +53,39 @@ export async function attachServerRespToCedEle(plugIn: pluginArgs) {
   if (!plugIn.tfMeta.server) { return }
   const [verb, url] = plugIn.tfMeta.server.split(' ')
 
-  if (verb === 'post') {
-    const model = getModel(plugIn)
-    const json = await plugIn.tfConfig.serverPost(url, model, plugIn)
-    // @ts-ignore
-    const merged = { ...model, ...json }
-    updateCedData(merged, json, plugIn)
-  }
+  switch(verb) {
+    case "post": {
+      const model = getModel(plugIn)
+      const json = await plugIn.tfConfig.serverPost(url, model, plugIn)
+      // @ts-ignore
+      const merged = { ...model, ...json }
+      updateCedData(merged, json, plugIn)
+      break;
+    }
+    case "get": {
+      //todo: add in any querystring params from the tf-server attribute
+      const model = getModel(plugIn);
+      const qs = objectToQueryParams(model);
+      const urlWithQs = `${url}${qs}`;
+      const json = await plugIn.tfConfig.serverGet(urlWithQs, plugIn);
+      updateCedData(model, json, plugIn)
+      break;
+    }
+    case "delete" : {
+      const model = getModel(plugIn);
+      const json = await plugIn.tfConfig.serverDelete(url, plugIn)
+      updateCedData(model, json, plugIn)
+      break;
 
-  if (verb === 'get') {
-    //todo: add in any querystring params from the tf-server attribute
-    const model = getModel(plugIn);
-    const qs = objectToQueryParams(model);
-    const urlWithQs = `${url}${qs}`;
-    const json = await plugIn.tfConfig.serverGet(urlWithQs, plugIn);
-    updateCedData(model, json, plugIn)
+    }
+    case "put" : {
+      const model = getModel(plugIn);
+      const json = await plugIn.tfConfig.serverPut(url, model, plugIn)
+
+      // @ts-ignore
+      const merged = { ...model, ...json }
+      updateCedData(model, json, plugIn)
+      break;
+    }
   }
 }
