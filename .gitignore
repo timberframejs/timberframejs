@@ -3,3 +3,4 @@ OrCarousel/node_modules
 coverage
 dist
 docs/examples
+*.orig
