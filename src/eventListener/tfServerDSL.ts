@@ -1,5 +1,5 @@
 import { objectToQueryParams } from "../common.js"
-import { makeFormData } from "./tfFormData.js"
+import { makeFormData, makeComplexData } from "./tfFormData.js"
 import { tfCedEle, tfMetaType, pluginArgs } from "../types.js"
 import { getIncludeElement } from "../eventListener/parseTfTarget.js"
 
@@ -35,6 +35,10 @@ export const updateCedData = (model, json, plugIn: pluginArgs) => {
 export const getModel = (plugIn: pluginArgs) => {
   const formDataEle = getIncludeElement(plugIn.ele, plugIn.tfMeta)
   const fd = makeFormData(formDataEle, plugIn.ele)
+  const co = makeComplexData(formDataEle, plugIn.ele);
+  if(co != null) {
+    return co;
+  }
   return Object.fromEntries(fd.entries())
 }
 

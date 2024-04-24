@@ -1,6 +1,6 @@
 import { tfElementType, pluginArgs } from "src/types.js";
 import { getIncludeElement } from "./parseTfTarget.js";
-import { makeFormData } from "./tfFormData.js";
+import { makeFormData, makeComplexData } from "./tfFormData.js";
 import { isTfServer } from "./tfServerDSL.js";
 
 export type copyEleDataType = {
@@ -9,6 +9,7 @@ export type copyEleDataType = {
   cedEle: tfElementType
   formDataEle: tfElementType
   fd: FormData
+  co: any
 }
 
 export const addBodyData = (all: copyEleDataType) => {
@@ -24,15 +25,13 @@ export const addBodyData = (all: copyEleDataType) => {
 }
 
 export const addModelData = (all) => {
-  const { hasModel, cedEle, formDataEle, fd } = all
+  const { hasModel, cedEle, formDataEle, fd, co } = all
   if (!hasModel) { return }
   cedEle.model = formDataEle.model
   if (cedEle.model === undefined) {
     cedEle.model = {}
   }
-  for (const [key, val] of fd.entries()) {
-    cedEle.model[key] = val;
-  }
+  cedEle.model = {...cedEle.model, ...co}
 }
 
 export function tfCedPost(pia: pluginArgs) {
@@ -43,11 +42,12 @@ export function tfCedPost(pia: pluginArgs) {
   // note: user gets to decide which format by what they put in
   //       their componet: body for form , model of json, or both body and model
   const fd = makeFormData(formDataEle, ele)
+  const co = makeComplexData(formDataEle, ele);
 
   // todo: mabe the body or model property names configurable. An existing app may use model already and want to use auModel or other.
   const hasBody = cedEle.hasOwnProperty('body')
   const hasModel = cedEle.hasOwnProperty('model')
-  const all = { hasModel, hasBody, cedEle, formDataEle, fd } as copyEleDataType
+  const all = { hasModel, hasBody, cedEle, formDataEle, fd, co } as copyEleDataType
   addBodyData(all)
   addModelData(all)
   if (!hasBody && !hasModel) {
