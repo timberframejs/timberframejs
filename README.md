@@ -201,7 +201,7 @@ export class ClickCounter extends HTMLElement {
 - input or change element
 - re-render changed component
 
-## ReRender Form - Validation
+### ReRender Form - Validation
 - input or change element
 - render parent component
 
