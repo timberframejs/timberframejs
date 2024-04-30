@@ -41,6 +41,7 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
     tfCed: parseTfCed(ele.getAttribute('tf-ced'), tfConfig, ele),
     tfInclude:  ele.getAttribute('tf-include'), //parsetfInclude(ele.getAttribute('tf-include'), tfConfig, ele),
     tfSwap: ele.getAttribute('tf-swap'),
+    tfWorkingCed: (ele.getAttribute('tf-working-ced') != null) ? parseTfCed(ele.getAttribute('tf-working-ced'), tfConfig, ele) : null,
     isThis: false,
     brains: initialMeta.brains,
     ced: {

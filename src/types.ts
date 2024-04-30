@@ -15,6 +15,7 @@ export type tfMetaType = {
   tfSwap: string // tfSwapType
   tfInclude: string | null
   isThis: boolean,
+  tfWorkingCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
   /** messages for decisions we make trying to be smart for the user */
   brains: Array<string>
   ced: CED<HTMLElement>
