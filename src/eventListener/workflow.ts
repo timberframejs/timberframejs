@@ -9,6 +9,7 @@ import { gettfMeta } from './tfMeta.js';
 import { tfCedPatchWorkflow } from './tfCedPatch.js';
 import { tfCedPost } from './tfCedPost.js';
 import { defaultConfig } from '../defaultConfig';
+import { makeComplexData } from "./tfFormData.js";
 
 /**
  * destroy the old event listener so we don't degrade performance
@@ -27,11 +28,62 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
   Array.from(ele.children).forEach(childEle => { removeOldEventListeners(childEle) })
 }
 
+const startWorking = (originalEle: HTMLElement, tfMeta) : string => {
+  let ced = tfMeta.tfWorkingCed;
+  let originalStyle = originalEle.style.display;
+
+  // build attributes
+  ced.attributes = [];
+  for (const [key, value] of ced.qs.entries()) {
+    ced.attributes[key] = value
+  }
+  // create element
+  const cedEle = createElement<tfCedEle>(ced)
+
+  // if post add data
+  if(ced.verb === 'post') {
+    let workingMeta = {...tfMeta};
+    workingMeta.tfCed.verb = 'post';
+    workingMeta.server = null;
+    const plugInArgs = {
+      tfMeta : workingMeta,
+      ele : originalEle,
+      cedEle : cedEle,
+    } as pluginArgs
+  
+    tfCedPost(plugInArgs);
+  }
+
+  /*
+    Instead of replacing the original element we are hiding it and appending the working element next to it.
+    We need to do it this way because the main workflow uses the initial element for most of its target work.
+    Replacing the element will nullify all the references it needs and result in errors.
+  */
+
+  // hide original
+  originalEle.style.display = "none";
+
+  // add working element after hidden original
+  originalEle.insertAdjacentElement('afterend', cedEle)
+  return originalStyle;
+}
+
+const endWorking = async (originalEle: HTMLElement, originalStyle:string)=> {
+  originalEle.style.display = originalStyle;
+  // Remove adjacent element
+  originalEle.parentNode.removeChild(originalEle.nextSibling)
+}
+
 export const mainWorkflow = async (wf: workflowArgs)=> {
   const { ele, initialMeta, tfConfig, e } = wf
 
   const tfMeta = await gettfMeta(ele, initialMeta, tfConfig)
 
+  let eleDisplayStyle = "";
+  if(tfMeta.tfWorkingCed) {
+    eleDisplayStyle = startWorking(ele, tfMeta)
+  }
+  
   // patch has a totally different workflow, this could even move up one level
   if (tfMeta.tfCed.raw.startsWith('patch')) {
     tfCedPatchWorkflow(wf, tfMeta)
@@ -78,6 +130,10 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
     toDispose = replaceAuTarget(plugInArgs)
     wf.tfConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs, pi.endEventCallback.args))
     removeOldEventListeners(toDispose)
+  }
+
+  if(tfMeta.tfWorkingCed) {
+    endWorking(ele, eleDisplayStyle);
   }
 
   // todo: explore destroying other objects that are no longer needed

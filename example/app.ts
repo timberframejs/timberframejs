@@ -9,6 +9,7 @@ import './store/store.js'
 import './auElementGenerator/auElementGenerator.js'
 import './tfHost/tfHostExample.js'
 import './timerApp/index.js'
+import './workingexample/index.js'
 defineElement('hello-msg', HelloWorldDiv,'div')
 
 auObserver(document.body, defaultConfig);
@@ -58,6 +59,15 @@ const pageLayout = html`
       tf-swap="innerHTML"
       tf-view-transition
       >Manual Events</a>
+
+      <a 
+      href="#workingexample-form"
+      tf-trigger="click"
+      tf-ced="post workingexample-form"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
+      >Working Example</a>
       
       <!-- automatically adds trigger='click' from the default config -->
       <a
