@@ -10,6 +10,9 @@ import './auElementGenerator/auElementGenerator.js'
 import './tfHost/tfHostExample.js'
 import './timerApp/index.js'
 import './workingexample/index.js'
+import './removeOnTimer/index.js'
+import './loadingExample/index.js'
+
 defineElement('hello-msg', HelloWorldDiv,'div')
 
 auObserver(document.body, defaultConfig);
@@ -77,6 +80,26 @@ const pageLayout = html`
       tf-swap="innerHTML"
       tf-view-transition
       >Dialog Buttons</a>
+
+      <a
+      href="#remove-me-example"
+      tf-ced="get remove-me-example"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
+      >Remove On Timer</a>
+
+
+      <a
+      href="#loading-example"
+      tf-ced="get loading-example"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
+      >Loading Example</a>
+
+  
+
 
     <a 
       href="#epatch-example"

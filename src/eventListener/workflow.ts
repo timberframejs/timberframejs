@@ -23,7 +23,7 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
   }
 
   if (isTfElement(ele as HTMLElement)) {
-    (ele as tfElementType).auAbortController.abort()
+    (ele as tfElementType).auAbortController?.abort()
   }
   Array.from(ele.children).forEach(childEle => { removeOldEventListeners(childEle) })
 }
