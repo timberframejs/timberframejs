@@ -11,6 +11,14 @@ export class RemoveMeExample extends HTMLElement {
             My Element that is being removed.
             <p>All of this should be gone</p>
           </div>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+          <p>
+            This is used to show temporary elements that a job has been completed to end users. 
+          </p>
+          <p>
+            The <b>tf-remove-me</b> attribute doesn't require any other tf- attributes to work.
+         </p>
       </div>`
 
     this.append(frag);
