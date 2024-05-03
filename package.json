@@ -1,6 +1,6 @@
 {
   "name": "@timberframejs/timberframejs",
-  "version": "0.0.04",
+  "version": "0.0.05",
   "description": "HTML driven reactivity and glue for customElements",
   "author": "Eric Rohlfs",
   "main": "./dist/js/index.js",
