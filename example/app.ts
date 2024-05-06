@@ -12,8 +12,14 @@ import './timerApp/index.js'
 import './workingexample/index.js'
 import './removeOnTimer/index.js'
 import './loadingExample/index.js'
+import './ping/index.js'
 
 defineElement('hello-msg', HelloWorldDiv,'div')
+
+let config = defaultConfig;
+
+// this override only required if tf-ping analytics are being utilized.
+config.tfPingEndpointUrl = "http://127.0.0.1:64699/PingAnalytics/"
 
 auObserver(document.body, defaultConfig);
 
@@ -138,6 +144,14 @@ const pageLayout = html`
       tf-swap="innerHTML"
       tf-view-transition
       >Primeagen Timer</a>
+
+      <a 
+      href="#ping-example"
+      tf-ced="get ping-example"
+      tf-target="main"
+      tf-swap="innerHTML"
+      tf-view-transition
+      >Ping</a>
   </nav>
   <main></main>
   <div id="secondary"></div>

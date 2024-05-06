@@ -17,6 +17,7 @@ export type tfMetaType = {
   isThis: boolean
   tfWorkingCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
   tfLoadingCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
+  tfPing: string
   /** messages for decisions we make trying to be smart for the user */
   brains: Array<string>
   ced: CED<HTMLElement>
@@ -65,6 +66,7 @@ export type tfConfigType = {
   serverGet: (url: string, plugIn: pluginArgs) => Promise<unknown>
   serverDelete: (url: string, plugIn: pluginArgs) => Promise<unknown>
   serverPut: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
+  tfPingEndpointUrl?: string
   defaultAttributes: {
     'tf-swap': string
     'tf-trigger': string
@@ -74,8 +76,8 @@ export type tfConfigType = {
   },
   tfInclude:{
     verb: 'post'|'get'
-  }
-  plugins: Array<pluginDefinition>
+  },
+  plugins: Array<pluginDefinition>,
   _plugins: {
     atEnd: Array<pluginDefinition>
     preflight:Array<pluginDefinition>

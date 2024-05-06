@@ -25,6 +25,18 @@ export async function tfMetaPrep(ele: HTMLElement, tfConfig: tfConfigType): Prom
     console.warn('Not wise to name your component after a reserved ced verb "patch-" ')
   }
 
+  // throw some additional warnings around ping implementation
+  if(ele.getAttribute('tf-ping') !== null){
+    if(ele.tagName.toLowerCase() != "a") {
+      console.warn("Warning: tf-ping can only work on anchor tags");
+    } else {
+      if(ele.getAttribute("href") === null) {
+        console.warn("Warning: tf-ping requires anchor tag to have a href attribute");
+      }
+    }
+  }
+
+
   const tfMeta = {
     trigger: ele.getAttribute('tf-trigger'),
     brains
@@ -44,6 +56,7 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
     tfWorkingCed: (ele.getAttribute('tf-working-ced') != null) ? parseTfCed(ele.getAttribute('tf-working-ced'), tfConfig, ele) : null,
     tfRemoveMe: ele.getAttribute('tf-remove-me'),
     tfLoadingCed: (ele.getAttribute('tf-loading-ced') != null) ? parseTfCed(ele.getAttribute('tf-loading-ced'), tfConfig, ele) : null,
+    tfPing: ele.getAttribute('tf-ping'),
     isThis: false,
     brains: initialMeta.brains,
     ced: {
@@ -51,6 +64,7 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
       attributes: {},
       properties: {}
     } as CED<HTMLElement>
+
   }
 
 
@@ -64,33 +78,42 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
 
   guessTheTargetSelector(ele, tfMeta)
 
-    // attributes are nice and allow for outer configuration like classes and such
-    // but attributes do clutter up the dom if just needed as properties
-    // if we only passed properties, then the user could have getters/setters that do set the attribute
-    // but attributes are usually safer
-    // BUT picking and choosing interfears with the whole get/post form data serialization thing.
-    // technically all form values should be paramertized, but what about a big text field?
-    // todo: move to tfMeta
-    for (const [key, value] of tfMeta.tfCed.qs.entries()) {
-      tfMeta.ced.attributes[key] = value
-    }
+  // attributes are nice and allow for outer configuration like classes and such
+  // but attributes do clutter up the dom if just needed as properties
+  // if we only passed properties, then the user could have getters/setters that do set the attribute
+  // but attributes are usually safer
+  // BUT picking and choosing interfears with the whole get/post form data serialization thing.
+  // technically all form values should be paramertized, but what about a big text field?
+  // todo: move to tfMeta
+  for (const [key, value] of tfMeta.tfCed.qs.entries()) {
+    tfMeta.ced.attributes[key] = value
+  }
 
-     //input auElement special use case where the input is basically the form so we can copy into get any mattaching verb searchParameter
-     if (ele.tagName === 'INPUT') {
-      // overwrite searchparam->attrbiute with the value of the input box
-      if (tfMeta.tfCed.qs.get((ele as HTMLInputElement)?.name)) {
-        tfMeta.ced.attributes[(ele as HTMLInputElement)?.name] = (ele as HTMLInputElement)?.value
-      }
+    //input auElement special use case where the input is basically the form so we can copy into get any mattaching verb searchParameter
+    if (ele.tagName === 'INPUT') {
+    // overwrite searchparam->attrbiute with the value of the input box
+    if (tfMeta.tfCed.qs.get((ele as HTMLInputElement)?.name)) {
+      tfMeta.ced.attributes[(ele as HTMLInputElement)?.name] = (ele as HTMLInputElement)?.value
     }
+  }
 
-   // todo: revisit this use case
-    // could have an overwrite situation when the searchParam and an existing attribute are the same.
-    if (tfMeta.isThis) {
-      // copy existing attributes to new element
-      for (const attr of ele.attributes) {
-        tfMeta.ced.attributes[attr.name] = attr.value
-      }
+  // todo: revisit this use case
+  // could have an overwrite situation when the searchParam and an existing attribute are the same.
+  if (tfMeta.isThis) {
+    // copy existing attributes to new element
+    for (const attr of ele.attributes) {
+      tfMeta.ced.attributes[attr.name] = attr.value
     }
+  }
+  
+  // throw warnings if meta is missing dependencies
+  if(tfMeta.tfPing !== null) {
+    if(tfConfig.tfPingEndpointUrl == null) {
+      console.warn("Warning: No tfPingEndpointUrl found in tf configuration. tf-ping cannot function. tfPingEndpointUrl can be overridden within defaultConfig before it is used by auObserver.")
+    } else {
+      console.log('tfPingEndpointUrl', tfConfig.tfPingEndpointUrl);
+    }
+  }
 
   // given <div tf-ced="get hello-msg?msg=hello world" we want to use the parameters as attributes
   // this will be an important part of the convention
