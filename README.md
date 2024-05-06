@@ -205,4 +205,8 @@ export class ClickCounter extends HTMLElement {
 - input or change element
 - render parent component
 
-
+### Initial page load to show spinner or skeleton while waiting for data.
+- show spinner
+- fetch data
+- create custom element and add to DOM
+- hide spinner
