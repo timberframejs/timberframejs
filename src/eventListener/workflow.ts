@@ -92,17 +92,46 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
 
   // if ping analytics are setup we send those to configured endpoint
   if (tfMeta.tfPing !== null && tfConfig.tfPingEndpointUrl != null) {
+    let fromUrl = window.location.href;
+    let toUrl = "";
+
+    if(ele.tagName.toLowerCase() === "a" && ele.getAttribute("href") != null) {
+        toUrl = ele.getAttribute("href");
+    }
+    if(toUrl.length === 0) {
+      toUrl = fromUrl;
+    }
+
     const postBody = {
       feature: tfMeta.tfPing,
       fromEleID: ele.id,
       fromEleTag: ele.tagName,
       toComponent: tfMeta.tfCed.tagName,
       trigger: tfMeta.trigger,
-      server: tfMeta.server
+      server: tfMeta.server,
+      mousex: (e as any).clientX,
+      mousey: (e as any).clientY
     } as tfPingPOSTBody
+    var qs = new URLSearchParams(postBody).toString();
+
      
     // fire and forget ping post
-    tfConfig.serverPost(tfConfig.tfPingEndpointUrl, postBody, null);
+    if(tfConfig.pingFetcher == null) {
+      
+      // if a fetcher isn't passed in we can create one ourselves that fits the ping requirements
+      fetch(tfConfig.tfPingEndpointUrl + "?" + qs, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Ping-To' : toUrl,
+          'Ping-From' : fromUrl
+        },
+        body: JSON.stringify(postBody)
+      })
+    } else {
+      tfConfig.pingFetcher(tfConfig.tfPingEndpointUrl + "?" + qs, fromUrl, toUrl);
+    }
   }
 
   const cedEle = createElement<tfCedEle>(tfMeta.ced)

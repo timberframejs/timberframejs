@@ -75,7 +75,20 @@ export type tfConfigType = {
   serverGet: (url: string, plugIn: pluginArgs) => Promise<unknown>
   serverDelete: (url: string, plugIn: pluginArgs) => Promise<unknown>
   serverPut: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
+
+  /**
+   * Custom fetch for sending ping data. Data is sent as an appended query string on the end of pingEndpointUrl.
+   * WARNING: Nothing sensitive should be in ping data.
+   */
+  pingFetcher?: (pingEndpointUrl: string, fromUrl: string, toUrl: string) => void
+
+  /**
+   * Url endpoint for sending ping data. This can be used without pingFetcher to use global fetcher.
+   * Ping data is appended to url as a query string EX: www.myexampleapi.com/analytics?feature=myfeature
+   * WARNING: Nothing sensitive should be in ping data.
+   */
   tfPingEndpointUrl?: string
+
   defaultAttributes: {
     'tf-swap': string
     'tf-trigger': string

@@ -6,7 +6,7 @@ const url = require('url');
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*'); // You can specify specific origins instead of '*'
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Add the allowed HTTP methods
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Add the allowed headers
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Ping-To, Ping-From'); // Add the allowed headers
   // CORS
   if (req.method === 'OPTIONS') {
     res.writeHead(204); // No content for preflight requests
