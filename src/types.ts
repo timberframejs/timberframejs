@@ -59,6 +59,15 @@ export type tfCedEle = HTMLElement & {
   value?:string
 }
 
+export type tfPingPOSTBody = {
+  feature: string
+  fromEleID: string
+  fromEleTag: string
+  toComponent: string
+  trigger: string
+  server: string
+}
+
 export type tfConfigType = {
   eventListenerBuilder: (ele: HTMLElement, tfConfig: tfConfigType) => Promise<void>
   workflow?: (wf: workflowArgs) => Promise<pluginArgs>

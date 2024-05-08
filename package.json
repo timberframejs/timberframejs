@@ -12,6 +12,7 @@
     "build-test": "rollup --config ./rollup.karma.cfg --watch",
     "test-dev": "karma start karma.conf.cjs",
     "serve-user-form": "node ./example/user-form/server.js",
+    "serve-ping": "node ./example/ping/server.js",
     "minify-browser":"terser ./dist/browser/js/index.js -o ./dist/browser/js/index.min.js --compress ecma=2015,computed_props=false"
   },
   "repository": {

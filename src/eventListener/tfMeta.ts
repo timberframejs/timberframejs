@@ -25,17 +25,6 @@ export async function tfMetaPrep(ele: HTMLElement, tfConfig: tfConfigType): Prom
     console.warn('Not wise to name your component after a reserved ced verb "patch-" ')
   }
 
-  // throw some additional warnings around ping implementation
-  if(ele.getAttribute('tf-ping') !== null){
-    if(ele.tagName.toLowerCase() != "a") {
-      console.warn("Warning: tf-ping can only work on anchor tags");
-    } else {
-      if(ele.getAttribute("href") === null) {
-        console.warn("Warning: tf-ping requires anchor tag to have a href attribute");
-      }
-    }
-  }
-
 
   const tfMeta = {
     trigger: ele.getAttribute('tf-trigger'),
@@ -110,8 +99,6 @@ export async function gettfMeta(ele: HTMLElement, initialMeta:Partial<tfMetaType
   if(tfMeta.tfPing !== null) {
     if(tfConfig.tfPingEndpointUrl == null) {
       console.warn("Warning: No tfPingEndpointUrl found in tf configuration. tf-ping cannot function. tfPingEndpointUrl can be overridden within defaultConfig before it is used by auObserver.")
-    } else {
-      console.log('tfPingEndpointUrl', tfConfig.tfPingEndpointUrl);
     }
   }
 

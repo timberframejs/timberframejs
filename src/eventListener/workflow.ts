@@ -2,7 +2,7 @@ import { _tfObserver } from '../tfObserver.js';
 import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { parseTfCed } from '../../src/eventListener/parseTfCed';
-import { tfCedEle, tfElementType, pluginArgs, workflowArgs, tfConfigType } from '../types.js';
+import { tfCedEle, tfElementType, pluginArgs, workflowArgs, tfConfigType, tfPingPOSTBody } from '../types.js';
 import { createElement,  } from '../utils/index.js';
 import { attachServerRespToCedEle } from './tfServerDSL.js';
 import { gettfMeta } from './tfMeta.js';
@@ -89,6 +89,22 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
     tfCedPatchWorkflow(wf, tfMeta)
     return;
   }
+
+  // if ping analytics are setup we send those to configured endpoint
+  if (tfMeta.tfPing !== null && tfConfig.tfPingEndpointUrl != null) {
+    const postBody = {
+      feature: tfMeta.tfPing,
+      fromEleID: ele.id,
+      fromEleTag: ele.tagName,
+      toComponent: tfMeta.tfCed.tagName,
+      trigger: tfMeta.trigger,
+      server: tfMeta.server
+    } as tfPingPOSTBody
+     
+    // fire and forget ping post
+    tfConfig.serverPost(tfConfig.tfPingEndpointUrl, postBody, null);
+  }
+
   const cedEle = createElement<tfCedEle>(tfMeta.ced)
 
   const plugInArgs = {

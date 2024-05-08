@@ -19,7 +19,7 @@ defineElement('hello-msg', HelloWorldDiv,'div')
 let config = defaultConfig;
 
 // this override only required if tf-ping analytics are being utilized.
-config.tfPingEndpointUrl = "http://127.0.0.1:64699/PingAnalytics/"
+config.tfPingEndpointUrl = "http://127.0.0.1:8082/"
 
 auObserver(document.body, defaultConfig);
 

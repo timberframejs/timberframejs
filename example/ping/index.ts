@@ -12,16 +12,26 @@ export class PingExample extends HTMLElement {
     const frag = html`
       <h3>This is a copy of the click counter but with a ping feature</h3>
       <input name='counter' value='${count}' />
-      <a
+      <button
+        id="asdf"
         tf-trigger='click'
         tf-ced='post ${PING_EXAMPLE}'
         tf-include='closest ${PING_EXAMPLE}'
         tf-target='#${this.id}'
-        href="javascript:void(0)"
-        tf-ping="ping-feature">click me</a>
+        tf-ping="ping-feature">click me</button>
+
+
+      <a href="javascript:void(0);"
+        tf-trigger='click'
+        tf-ced='post ${PING_EXAMPLE}'
+        tf-include='closest ${PING_EXAMPLE}'
+        tf-target='#${this.id}'
+        tf-server='post http://127.0.0.1:8081/'
+        tf-ping="feature-two">click for another feature</a>
     `
     this.append(frag)
   }
 }
+
 
 defineElement(PING_EXAMPLE, PingExample)
