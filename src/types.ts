@@ -17,6 +17,7 @@ export type tfMetaType = {
   isThis: boolean
   tfWorkingCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
   tfLoadingCed: { raw: string, verb: string, tagName: string, qs: URLSearchParams }
+  tfPing: string
   /** messages for decisions we make trying to be smart for the user */
   brains: Array<string>
   ced: CED<HTMLElement>
@@ -58,6 +59,15 @@ export type tfCedEle = HTMLElement & {
   value?:string
 }
 
+export type tfPingPOSTBody = {
+  feature: string
+  fromEleID: string
+  fromEleTag: string
+  toComponent: string
+  trigger: string
+  server: string
+}
+
 export type tfConfigType = {
   eventListenerBuilder: (ele: HTMLElement, tfConfig: tfConfigType) => Promise<void>
   workflow?: (wf: workflowArgs) => Promise<pluginArgs>
@@ -65,6 +75,20 @@ export type tfConfigType = {
   serverGet: (url: string, plugIn: pluginArgs) => Promise<unknown>
   serverDelete: (url: string, plugIn: pluginArgs) => Promise<unknown>
   serverPut: (url: string, data: unknown | FormData, plugIn: pluginArgs) => Promise<unknown>
+
+  /**
+   * Custom fetch for sending ping data. Data is sent as an appended query string on the end of pingEndpointUrl.
+   * WARNING: Nothing sensitive should be in ping data.
+   */
+  pingFetcher?: (pingEndpointUrl: string, fromUrl: string, toUrl: string) => void
+
+  /**
+   * Url endpoint for sending ping data. This can be used without pingFetcher to use global fetcher.
+   * Ping data is appended to url as a query string EX: www.myexampleapi.com/analytics?feature=myfeature
+   * WARNING: Nothing sensitive should be in ping data.
+   */
+  tfPingEndpointUrl?: string
+
   defaultAttributes: {
     'tf-swap': string
     'tf-trigger': string
@@ -74,8 +98,8 @@ export type tfConfigType = {
   },
   tfInclude:{
     verb: 'post'|'get'
-  }
-  plugins: Array<pluginDefinition>
+  },
+  plugins: Array<pluginDefinition>,
   _plugins: {
     atEnd: Array<pluginDefinition>
     preflight:Array<pluginDefinition>

@@ -2,7 +2,7 @@ import { _tfObserver } from '../tfObserver.js';
 import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
 import { parseTfCed } from '../../src/eventListener/parseTfCed';
-import { tfCedEle, tfElementType, pluginArgs, workflowArgs, tfConfigType } from '../types.js';
+import { tfCedEle, tfElementType, pluginArgs, workflowArgs, tfConfigType, tfPingPOSTBody } from '../types.js';
 import { createElement,  } from '../utils/index.js';
 import { attachServerRespToCedEle } from './tfServerDSL.js';
 import { gettfMeta } from './tfMeta.js';
@@ -89,6 +89,51 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
     tfCedPatchWorkflow(wf, tfMeta)
     return;
   }
+
+  // if ping analytics are setup we send those to configured endpoint
+  if (tfMeta.tfPing !== null && tfConfig.tfPingEndpointUrl != null) {
+    let fromUrl = window.location.href;
+    let toUrl = "";
+
+    if(ele.tagName.toLowerCase() === "a" && ele.getAttribute("href") != null) {
+        toUrl = ele.getAttribute("href");
+    }
+    if(toUrl.length === 0) {
+      toUrl = fromUrl;
+    }
+
+    const postBody = {
+      feature: tfMeta.tfPing,
+      fromEleID: ele.id,
+      fromEleTag: ele.tagName,
+      toComponent: tfMeta.tfCed.tagName,
+      trigger: tfMeta.trigger,
+      server: tfMeta.server,
+      mousex: (e as any).clientX,
+      mousey: (e as any).clientY
+    } as tfPingPOSTBody
+    var qs = new URLSearchParams(postBody).toString();
+
+     
+    // fire and forget ping post
+    if(tfConfig.pingFetcher == null) {
+      
+      // if a fetcher isn't passed in we can create one ourselves that fits the ping requirements
+      fetch(tfConfig.tfPingEndpointUrl + "?" + qs, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Ping-To' : toUrl,
+          'Ping-From' : fromUrl
+        },
+        body: JSON.stringify(postBody)
+      })
+    } else {
+      tfConfig.pingFetcher(tfConfig.tfPingEndpointUrl + "?" + qs, fromUrl, toUrl);
+    }
+  }
+
   const cedEle = createElement<tfCedEle>(tfMeta.ced)
 
   const plugInArgs = {
