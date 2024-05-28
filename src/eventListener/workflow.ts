@@ -214,6 +214,11 @@ export const executeRawWorkflow = async (args: executeRawWorkflowArgs)=> {
     return;
   }
 
+  (tfMeta.tfCed as any).attributes = [];
+  for (const [key, value] of tfMeta.tfCed.qs.entries()) {
+      (tfMeta.tfCed as any).attributes[key] = value
+  }
+
   const cedEle = createElement<tfCedEle>(tfMeta.tfCed)
 
   const plugInArgs = {
