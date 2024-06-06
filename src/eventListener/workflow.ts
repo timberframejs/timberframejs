@@ -1,7 +1,7 @@
 import { _tfObserver } from '../tfObserver.js';
 import { isTfElement } from '../common.js';
 import { getTargetEle, replaceAuTarget } from './parseTfTarget.js';
-import { parseTfCed } from '../../src/eventListener/parseTfCed';
+import { parseTfCed } from './parseTfCed';
 import { tfCedEle, tfElementType, pluginArgs, workflowArgs, tfConfigType, tfPingPOSTBody } from '../types.js';
 import { createElement,  } from '../utils/index.js';
 import { attachServerRespToCedEle } from './tfServerDSL.js';
