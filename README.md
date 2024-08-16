@@ -1,6 +1,6 @@
 # TimberFrameJs
 
-[documents](https://timberframejs.github.io/timberframejs/)
+[Examples](https://timberframejs.github.io/timberframejs/examples/)
 
 TimberFrameJs is inspired by HTMX. Instead of rendering HTML on the server like HTMX, TimberFrameJs uses client-side JavaScript native customElements to generate HTML.
 
