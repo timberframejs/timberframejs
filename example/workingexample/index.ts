@@ -2,12 +2,12 @@ import { defineElement, html } from "../../src";
 
 const apiUrl =  'http://127.0.0.1:8081/user'
 export class WorkingExampleForm extends HTMLElement {
-  model : {
-    myData: "My Data in swap"
-  }
+  model!: {
+    myData: "My Data in swap";
+  };
 
   async connectedCallback() {
-    let frag = html`<div>
+    const frag = html`<div>
          <div></div>
          <h3>Button will swap to defined CED while working</h3>
          <input type="text" name="myData" placeholder="My data will show in swapped element if post verb used" />
@@ -33,11 +33,11 @@ export class WorkingExampleForm extends HTMLElement {
 }
 
 export class WorkingExampleSwap extends HTMLElement {
-  model : {}
+  model!: unknown;
   
   // todo : trying to get post model to work.
   async connectedCallback() {
-    let frag = html`<div>
+    const frag = html`<div>
          My Working Content QS:${this.getAttribute("id") || ""} Model: ${(this.model as any)?.myData}
       </div>`
 
@@ -47,10 +47,10 @@ export class WorkingExampleSwap extends HTMLElement {
 }
 
 export class WorkingExampleSubContent extends HTMLElement {
-  model
+  model: unknown;
 
   async connectedCallback() {
-    let frag = html`<div>
+    const frag = html`<div>
          My Sub Content 
       </div>`
 

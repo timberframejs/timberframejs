@@ -2,7 +2,7 @@ import { eventSetupArgs } from "../../types.js";
 
 const hostT = ['tf-target', 'tf-include'];
 
-export const tfHostImpl = (esa: eventSetupArgs, piArgs) => {
+export const tfHostImpl = (esa: eventSetupArgs, _piArgs) => {
   const {ele, initialMeta} = esa;
   const tfHost = ele.getAttribute('tf-host');
   if (tfHost !== null && tfHost.length > 1) {

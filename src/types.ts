@@ -42,7 +42,7 @@ export type tfElementType = {
   auAbortController: AbortController
   tfMeta: tfMetaType
   body?: FormData
-  model?: any
+  model?: unknown
   attributes: auAttributeTypes
   name:string|undefined
   value:string|undefined
@@ -137,11 +137,11 @@ export type workflowArgs = eventSetupArgs & {
  */
 export type pluginDefinition = {
   name: string
-  preflight?:(esa:eventSetupArgs, piArgs?:any)=>void
+  preflight?:(esa:eventSetupArgs, piArgs?:unknown)=>void
   // this could be an array
   endEventCallback?:{
     when: string
-    callback: (pi: pluginArgs, args: any) => Promise<any>
-    args: any
+    callback: (pi: pluginArgs, args: unknown) => Promise<unknown>
+    args: unknown
   }
 }

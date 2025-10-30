@@ -16,7 +16,7 @@ import './ping/index.js'
 
 defineElement('hello-msg', HelloWorldDiv,'div')
 
-let config = defaultConfig;
+const config = defaultConfig;
 
 // this override only required if tf-ping analytics are being utilized.
 config.tfPingEndpointUrl = "http://127.0.0.1:8082"

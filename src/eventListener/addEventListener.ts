@@ -72,7 +72,7 @@ function buildPluginRemoveMe(ele: tfElementType, removalTimoutMs: number) {
 
 function buildPluginLoading(ele: tfElementType, ced) {
 
-  let originalStyle = ele.style.display;
+  const originalStyle = ele.style.display;
 
   // show / hide done instead of replace to preserve element relationships
   ced.attributes = [];

@@ -29,8 +29,8 @@ const removeOldEventListeners = async (ele: Element | DocumentFragment)=> {
 }
 
 const startWorking = (originalEle: HTMLElement, tfMeta) : string => {
-  let ced = tfMeta.tfWorkingCed;
-  let originalStyle = originalEle.style.display;
+  const ced = tfMeta.tfWorkingCed;
+  const originalStyle = originalEle.style.display;
 
   // build attributes
   ced.attributes = [];
@@ -42,7 +42,7 @@ const startWorking = (originalEle: HTMLElement, tfMeta) : string => {
 
   // if post add data
   if(ced.verb === 'post') {
-    let workingMeta = {...tfMeta};
+    const workingMeta = {...tfMeta};
     workingMeta.tfCed.verb = 'post';
     workingMeta.server = null;
     const plugInArgs = {
@@ -92,7 +92,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
 
   // if ping analytics are setup we send those to configured endpoint
   if (tfMeta.tfPing !== null && tfConfig.tfPingEndpointUrl != null) {
-    let fromUrl = window.location.href;
+    const fromUrl = window.location.href;
     let toUrl = "";
 
     if(ele.tagName.toLowerCase() === "a" && ele.getAttribute("href") != null) {
@@ -112,7 +112,7 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
       mousex: (e as any).clientX,
       mousey: (e as any).clientY
     } as tfPingPOSTBody
-    var qs = new URLSearchParams(postBody).toString();
+    const qs = new URLSearchParams(postBody).toString();
 
      
     // fire and forget ping post
@@ -163,9 +163,8 @@ export const mainWorkflow = async (wf: workflowArgs)=> {
 
   let toDispose = new DocumentFragment()
   // todo: add error message that tf-view-transition is not compatible with preserve focusS
-  // @ts-ignore
   if(plugInArgs.ele.hasAttribute('tf-view-transition') && document.startViewTransition){
-     // @ts-ignore
+
     document.startViewTransition(()=>{
       toDispose = replaceAuTarget(plugInArgs)
       wf.tfConfig._plugins.atEnd.forEach(pi => pi.endEventCallback.callback(plugInArgs, pi.endEventCallback.args))

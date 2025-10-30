@@ -57,7 +57,7 @@ describe('tfServerDSL file', () => {
       };
 
       // @ts-ignore
-      let spy1 = spyOn(plugin.tfConfig, 'serverPost');
+      const spy1 = spyOn(plugin.tfConfig, 'serverPost');
       attachServerRespToCedEle(plugin as any);
       expect(spy1).toHaveBeenCalled();
     })
@@ -72,7 +72,7 @@ describe('tfServerDSL file', () => {
       };
 
       // @ts-ignore
-      let spy1 = spyOn(plugin.tfConfig, 'serverGet');
+      const spy1 = spyOn(plugin.tfConfig, 'serverGet');
       attachServerRespToCedEle(plugin as any);
       expect(spy1).toHaveBeenCalled();
     })
@@ -87,7 +87,7 @@ describe('tfServerDSL file', () => {
       };
 
       // @ts-ignore
-      let spy1 = spyOn(plugin.tfConfig, 'serverDelete');
+      const spy1 = spyOn(plugin.tfConfig, 'serverDelete');
       attachServerRespToCedEle(plugin as any);
       expect(spy1).toHaveBeenCalled();
     })
@@ -102,7 +102,7 @@ describe('tfServerDSL file', () => {
       };
 
       // @ts-ignore
-      let spy1 = spyOn(plugin.tfConfig, 'serverPut');
+      const spy1 = spyOn(plugin.tfConfig, 'serverPut');
       attachServerRespToCedEle(plugin as any);
       expect(spy1).toHaveBeenCalled();
     })

@@ -13,9 +13,13 @@ import { CED, CEDC, CEDCIs } from '../createElement/types.js';
 export function defineElement(name: string, customEleJs: CustomElementConstructor, extendsOption: null | string = null) {
 
   if (extendsOption === null) {
-    customElements.get(name) ?? customElements.define(name, customEleJs);
+    if (!customElements.get(name)) {
+      customElements.define(name, customEleJs);
+    }
   } else {
-    customElements.get(name) ?? customElements.define(name, customEleJs, { extends: extendsOption });
+    if (!customElements.get(name)) {
+      customElements.define(name, customEleJs, { extends: extendsOption });
+    }
   }
 }
 

@@ -46,7 +46,7 @@ function htmlTemplateLitBase(forTag:string){
  * It is recommended to use the factory for anything other than div
  */
 export function html(htmlStrings:TemplateStringsArray, ...data:string[]):DocumentFragment {
-  // eslint-disable-next-line no-unsanitized/method
+ 
   return htmlTemplateLitBase('div').html(htmlStrings, ...data);
 }
 
@@ -55,6 +55,6 @@ export function html(htmlStrings:TemplateStringsArray, ...data:string[]):Documen
  * There is a known issue/feature about adding tr tags as children of DIV's, this fixes that issue.
  */
 export function htmlForTable(htmlStrings:TemplateStringsArray, ...data:string[]):DocumentFragment {
-  // eslint-disable-next-line no-unsanitized/method
+   
   return htmlTemplateLitBase('table').html(htmlStrings, ...data);
 }

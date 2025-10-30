@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Fri Mar 25 2022 19:20:30 GMT-0400 (Eastern Daylight Time)
 
-// eslint-disable-next-line no-undef
+ 
 module.exports = function(config) {
   config.set({
 

@@ -97,9 +97,9 @@ describe('makeComplexData Function', () => {
       <textarea name="details">my text data</textarea>
       `)
 
-    let formObject = makeComplexData(hostElement, null);
+    const formObject = makeComplexData(hostElement, null);
 
-    let expected = {first: "", last: "", details: "my text data"};
+    const expected = {first: "", last: "", details: "my text data"};
     expect(expected).toEqual(formObject as any);
   });
 
@@ -113,8 +113,8 @@ describe('makeComplexData Function', () => {
       </select>
       `)
 
-    let formObject = makeComplexData(hostElement, null);
-    let expected = {first: "", last: "", ageGroup:"test1", ageGroup_text:"Option B"};
+    const formObject = makeComplexData(hostElement, null);
+    const expected = {first: "", last: "", ageGroup:"test1", ageGroup_text:"Option B"};
     expect(expected).toEqual(formObject as any);
   });
 
@@ -127,8 +127,8 @@ describe('makeComplexData Function', () => {
       <input type="text" name="animal.legs" value="4" />
       `)
 
-    let formObject = makeComplexData(hostElement, null);
-    let expected = {first: "", last: "", animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue"}}};
+    const formObject = makeComplexData(hostElement, null);
+    const expected = {first: "", last: "", animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue"}}};
     expect(expected).toEqual(formObject as any);
   });
 
@@ -143,8 +143,8 @@ describe('makeComplexData Function', () => {
       <input type="text" name="food[]" value="banana" />
       `)
 
-    let formObject = makeComplexData(hostElement, null);
-    let expected = {first: "", last: "", food:["apple", "banana"], animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue"}}};
+    const formObject = makeComplexData(hostElement, null);
+    const expected = {first: "", last: "", food:["apple", "banana"], animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue"}}};
     expect(expected).toEqual(formObject as any);
   });
 
@@ -161,8 +161,8 @@ describe('makeComplexData Function', () => {
       <input type="text" name="food[]" value="banana" />
       `)
 
-    let formObject = makeComplexData(hostElement, null);
-    let expected = {first: "", last: "", food:["apple", "banana"], animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue", shoe: ["nike", "adidas"]}}};
+    const formObject = makeComplexData(hostElement, null);
+    const expected = {first: "", last: "", food:["apple", "banana"], animal: {name:"sparky", legs:"4"}, my: {nested: {alot: "myValue", shoe: ["nike", "adidas"]}}};
     expect(formObject as any).toEqual(expected);
   });
 

@@ -53,7 +53,7 @@ const getVal = (ele: HTMLInputElement) => ele.value ?? ele.getAttribute('value')
  */
 export function tryAddEventTargetAsFormControl(controls, ele) {
   const name1 = getName(ele) ?? getVal(ele);
-  let val = getVal(ele)
+  const val = getVal(ele)
   const name = name1 === '' ? null : name1
   if (name) {
     controls.push({ name, value: val })
@@ -133,10 +133,10 @@ export function makeComplexData(node: HTMLElement, ele: tfElementType): any {
   const textAreas = node.querySelectorAll(':scope textarea')
   controls.push(...textAreas)
 
-  let complexObject = {};
-  let parsedNames = [];
+  const complexObject = {};
+  const parsedNames = [];
   controls.forEach(ctrol => {   
-    let parts = ctrol.name.split('.');
+    const parts = ctrol.name.split('.');
     if (parsedNames.indexOf(ctrol.name) > -1) {
       console.warn(`Developer, you may have a copy/paste error in your form or tf-include tree. There is more than one form control with the name ${ctrol.name}`)
     } else {
@@ -181,7 +181,7 @@ export function makeComplexData(node: HTMLElement, ele: tfElementType): any {
               if(parts[i].indexOf('[]') > -1) { 
 
                 // get part name by removing brackets
-                let propName = parts[i].substring(0, parts[i].length - 2);
+                const propName = parts[i].substring(0, parts[i].length - 2);
 
                 // create object if needed
                 if(propTree[propName] == null) {
@@ -209,6 +209,6 @@ export function makeComplexData(node: HTMLElement, ele: tfElementType): any {
 }
 
 export function getFormDataAsType<Type>(node: HTMLElement, ele: tfElementType): Type {
-  let object = makeComplexData(node, ele);
+  const object = makeComplexData(node, ele);
   return object as Type;
 }

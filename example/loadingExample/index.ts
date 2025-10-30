@@ -8,7 +8,7 @@ export class LoadingExample extends HTMLElement {
   async connectedCallback() {
     this.setAttribute("tf-loading-ced","get loading-example-swap")
 
-    let frag = html`<div>
+    const frag = html`<div>
           <h3>This element will not show until service is done loading</h3>
           <p>&nbsp;</p>
           <p>&nbsp;</p>
@@ -37,7 +37,7 @@ export class LoadingExampleSwap extends HTMLElement {
   
   // todo : trying to get post model to work.
   async connectedCallback() {
-    let frag = html`<div>
+    const frag = html`<div>
         <h3>My Loading Content</h3>
         <p></p>
         <p></p>

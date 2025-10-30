@@ -6,8 +6,8 @@ const EVENT_VIEW = 'event-view';
 
 export class EventForm extends HTMLElement {
 
-   model
-   ticker
+   model: { make: any; model: any; year: any; lastOwner: any; } | undefined
+   ticker: NodeJS.Timer | undefined
    async connectedCallback() {
       if (this.model === undefined) {
         this.model = {
@@ -20,7 +20,7 @@ export class EventForm extends HTMLElement {
           }
         }
       }
-      let frag = html`<div>
+      const frag = html`<div>
          <div></div>
          <h3>Car form</h3>
          <div>
@@ -73,6 +73,7 @@ export class EventForm extends HTMLElement {
    }
 
    async disconnectedCallback() {
+    //@ts-ignore
       window.clearInterval(this.ticker);
       executeRawWorkflow({
          fromElement: this,
@@ -85,7 +86,7 @@ export class EventForm extends HTMLElement {
 
 export class EventView extends HTMLElement {
 
-   model
+   model: { make: any; model: any; year: any; lastOwner: any; } | undefined
    async connectedCallback() {
       if (this.model === undefined) {
         if (this.model === undefined) {
@@ -100,7 +101,7 @@ export class EventView extends HTMLElement {
          }
        }
       }
-      let frag = html`<div>
+      const frag = html`<div>
          <h3>Live view from interval</h3>
          <div>
             <span style="font-weight:bold; display:block;">Make</span>

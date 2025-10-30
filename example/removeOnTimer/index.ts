@@ -4,7 +4,7 @@ export class RemoveMeExample extends HTMLElement {
 
   readonly timeoutInMS = 2000;
   async connectedCallback() {
-    let frag = html`<div>
+    const frag = html`<div>
           <div></div>
           <h3>The element below will be removed in ${this.timeoutInMS.toString()} MS</h3>
           <div tf-remove-me="${this.timeoutInMS.toString()}">

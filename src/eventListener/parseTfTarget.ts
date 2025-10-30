@@ -103,7 +103,7 @@ export function getIncludeElement(ele: HTMLElement, tfMeta: tfMetaType) {
 export function replaceAuTarget(plugIn:pluginArgs){
 
   // need to play with this some more and get it working better
-  let toDispose = new DocumentFragment();
+  const toDispose = new DocumentFragment();
   switch (plugIn.tfMeta.tfSwap) {
     case swapOptions.innerHTML:
       // could see if the inner has any auElements and remove the event listeners
