@@ -43,7 +43,7 @@ export class UserDetailsInfo extends HTMLElement {
 }
 
 export class UserDetailsSingle extends HTMLFormElement {
-  body?: FormData // data is being passed into the component as FormData
+  body: FormData | undefined = undefined // data is being passed into the component as FormData
   model = {
     first_name: '',
     last_name: ''
