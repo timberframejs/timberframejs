@@ -3,33 +3,24 @@
   "compilerOptions": {
     "module": "ES2022",
     "esModuleInterop": false,
-    "target": "es2022",
+    "target": "es2024",
     "moduleResolution": "Bundler",
     "sourceMap": true,
     "outDir": "dist/js",
     "declarationMap": true,
-    "declaration":true,
-    "lib": [
-      "ES2022",
-      "dom",
-      "dom.iterable"
-    ],
+    "declaration": true,
+    "lib": ["ES2022", "dom", "dom.iterable"],
     "typeRoots": ["./node_modules/@types"],
     "baseUrl": ".",
     "skipLibCheck": true,
-    "types": [
-      "jasmine",
-      "sinon"
-    ]
+    "types": ["jasmine", "sinon"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   // let rollup handle src/bundlingExample - see rollup.config
-  "exclude": [
-    "./dist",
-    "node_modules",
-  ],
-  "include": [
-    "./src/"
-  ],
+  "exclude": ["./dist", "node_modules"],
+  "include": ["./src/"],
   "watchOptions": {
     // Use native file system events for files and directories
     "watchFile": "useFsEvents",
@@ -41,9 +32,6 @@
     "synchronousWatchDirectory": true,
     // Finally, two additional settings for reducing the amount of possible
     // files to track  work from these directories
-    "excludeDirectories": [
-      "**/node_modules",
-      "/dist"
-    ]
+    "excludeDirectories": ["**/node_modules", "/dist"]
   }
 }
