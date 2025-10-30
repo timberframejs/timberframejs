@@ -1,6 +1,10 @@
 {
   "liveServer.settings.AdvanceCustomBrowserCmdLine": "",
     "liveServer.settings.multiRootWorkspaceName": "",
-    "liveServer.settings.port": 64699
+    "liveServer.settings.port": 64699,
+    "cSpell.words": [
+      "Rohlfs",
+      "timberframejs"
+    ]
     
 }
