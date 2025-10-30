@@ -8,6 +8,7 @@
     "build-docs": "tsc --project tsconfig.json & rolldown --config ./rollup.browser.mjs",
     "build": "tsc --project tsconfig.json & rolldown --config ./rollup.browser.mjs & rolldown --config ./rollup.karma.mjs & terser ./dist/browser/js/index.js -o ./dist/browser/js/index.min.js --compress ecma=2015,computed_props=false",
     "dev": "rolldown --config ./rollup.browser.mjs --watch",
+    "lint": "eslint src/ example/",
     "test-once": "rolldown --config ./rollup.karma.mjs & rolldown --config ./rollup.browser.mjs",
     "build-test": "rolldown --config ./rollup.karma.mjs --watch",
     "test-dev": "karma start karma.conf.cjs",
