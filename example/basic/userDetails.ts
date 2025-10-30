@@ -1,4 +1,4 @@
-import { html } from "src/utils/index.js"
+import { html } from "../../src/utils/index.js"
 
 export class UserDetailsForm extends HTMLFormElement {
   connectedCallback() {
@@ -43,15 +43,15 @@ export class UserDetailsInfo extends HTMLElement {
 }
 
 export class UserDetailsSingle extends HTMLFormElement {
-  body: FormData // data is being passed into the component as FormData
+  body?: FormData // data is being passed into the component as FormData
   model = {
     first_name: '',
     last_name: ''
   }
   connectedCallback() {
     if (this.body) {
-      // @ts-ignore
-      this.model = Object.fromEntries(this.body)
+    
+      this.model = Object.fromEntries(this.body) as userInfoModel
     }
     const frag = html`
       <div>

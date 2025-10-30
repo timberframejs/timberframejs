@@ -5,15 +5,15 @@
   "author": "Eric Rohlfs",
   "main": "./dist/js/index.js",
   "scripts": {
-    "build-docs": "tsc --project tsconfig.json & rollup --config ./rollup.browser.cfg",
-    "build": "tsc --project tsconfig.json & rollup --config ./rollup.browser.cfg & rollup --config ./rollup.karma.cfg & terser ./dist/browser/js/index.js -o ./dist/browser/js/index.min.js --compress ecma=2015,computed_props=false",
-    "dev": "rollup --config ./rollup.browser.cfg --watch",
-    "test-once": "rollup --config ./rollup.karma.cfg & rollup --config ./rollup.browser.cfg",
-    "build-test": "rollup --config ./rollup.karma.cfg --watch",
+    "build-docs": "tsc --project tsconfig.json & rolldown --config ./rollup.browser.mjs",
+    "build": "tsc --project tsconfig.json & rolldown --config ./rollup.browser.mjs & rolldown --config ./rollup.karma.mjs & terser ./dist/browser/js/index.js -o ./dist/browser/js/index.min.js --compress ecma=2015,computed_props=false",
+    "dev": "rolldown --config ./rollup.browser.mjs --watch",
+    "test-once": "rolldown --config ./rollup.karma.mjs & rolldown --config ./rollup.browser.mjs",
+    "build-test": "rolldown --config ./rollup.karma.mjs --watch",
     "test-dev": "karma start karma.conf.cjs",
     "serve-user-form": "node ./example/user-form/server.js",
     "serve-ping": "node ./example/ping/server.js",
-    "minify-browser":"terser ./dist/browser/js/index.js -o ./dist/browser/js/index.min.js --compress ecma=2015,computed_props=false"
+    "minify-browser": "terser ./dist/browser/js/index.js -o ./dist/browser/js/index.min.js --compress ecma=2015,computed_props=false"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,6 @@
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.6.3",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-typescript": "^8.3.4",
     "@types/jasmine": "^4.0.0",
     "@types/node": "^17.0.29",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
@@ -53,13 +51,11 @@
     "karma-sinon": "^1.0.5",
     "karma-sourcemap-loader": "^0.3.8",
     "karma-spec-reporter": "^0.0.32",
-    "rollup": "^2.60.2",
-    "rollup-plugin-ts": "^3.2.0",
+    "rolldown": "^1.0.0-beta.45",
     "sinon": "^11.1.2",
+    "terser": "^5.20.0",
     "ts-node": "^10.9.1",
     "ts-sinon": "^2.0.2",
-    "typescript": "^5.3.3",
-    "terser": "^5.20.0"
-  },
-  "dependencies": {}
+    "typescript": "^5.3.3"
+  }
 }

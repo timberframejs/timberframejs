@@ -1,5 +1,3 @@
-import {nodeResolve} from '@rollup/plugin-node-resolve';
-import ts from 'rollup-plugin-ts';
 export default [
   {
     input: './src/index.ts',
@@ -7,12 +5,7 @@ export default [
       file: './dist/browser/js/index.js',
       format: 'es',
       sourcemap: false
-    },
-    plugins: [
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    }
   },
   {
     input: './example/nav/app.ts',
@@ -21,11 +14,11 @@ export default [
       format: 'es',
       sourcemap: false
     },
-    plugins: [
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   },
   {
     input: './example/basic/app.ts',
@@ -34,12 +27,11 @@ export default [
       format: 'es',
       sourcemap: false
     },
-    plugins: [
-      nodeResolve(),
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   },
    {
     input: './example/dialog/app.ts',
@@ -48,12 +40,11 @@ export default [
       format: 'es',
       sourcemap: false
     },
-    plugins: [
-      nodeResolve(),
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   },
   {
     input: './example/dialog/app2.ts',
@@ -62,12 +53,11 @@ export default [
       format: 'es',
       sourcemap: false
     },
-    plugins: [
-      nodeResolve(),
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   }, 
    {
     input: './example/app.ts',
@@ -76,12 +66,11 @@ export default [
       format: 'es',
       sourcemap: false
     },
-    plugins: [
-      nodeResolve(),
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   },
   {
     input: './example/customFetcher/app.ts',
@@ -90,12 +79,11 @@ export default [
       format: 'es',
       sourcemap: false
     },
-    plugins: [
-      nodeResolve(),
-      ts({
-        tsconfig: './tsconfig.browser.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   },
   {
     input: './test/index.spec.ts',
@@ -104,11 +92,10 @@ export default [
       format: 'es',
       sourcemap: true
     },
-    plugins: [
-       nodeResolve(),
-      ts({
-        tsconfig: './tsconfig.karma.json'
-      })
-    ]
+    resolve: {
+      alias: {
+        'src': './src'
+      }
+    }
   }
 ];
